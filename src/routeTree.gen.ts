@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as WeightLossGlp1RouteImport } from './routes/weight-loss-glp1'
 import { Route as SpecialtiesRouteImport } from './routes/specialties'
 import { Route as ResourcesRouteImport } from './routes/resources'
 import { Route as LongevityRouteImport } from './routes/longevity'
@@ -16,12 +17,17 @@ import { Route as LocationsRouteImport } from './routes/locations'
 import { Route as DiagnosticsRouteImport } from './routes/diagnostics'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as SpecialtiesIndexRouteImport } from './routes/specialties.index'
+import { Route as LongevityIndexRouteImport } from './routes/longevity.index'
 import { Route as DiagnosticsIndexRouteImport } from './routes/diagnostics.index'
 import { Route as SpecialtiesSleepMedicineRouteImport } from './routes/specialties.sleep-medicine'
 import { Route as SpecialtiesPrimaryCareRouteImport } from './routes/specialties.primary-care'
 import { Route as SpecialtiesPainManagementRouteImport } from './routes/specialties.pain-management'
 import { Route as SpecialtiesNeurologyRouteImport } from './routes/specialties.neurology'
 import { Route as SpecialtiesCardiologyVascularRouteImport } from './routes/specialties.cardiology-vascular'
+import { Route as LongevityWaitlistRouteImport } from './routes/longevity.waitlist'
+import { Route as LongevityHormoneOptimizationRouteImport } from './routes/longevity.hormone-optimization'
+import { Route as LongevityHealthspanProgramsRouteImport } from './routes/longevity.healthspan-programs'
+import { Route as LongevityExecutivePhysicalsRouteImport } from './routes/longevity.executive-physicals'
 import { Route as DiagnosticsSleepPulmonaryRouteImport } from './routes/diagnostics.sleep-pulmonary'
 import { Route as DiagnosticsSampleReportRouteImport } from './routes/diagnostics.sample-report'
 import { Route as DiagnosticsImagingCardiacRouteImport } from './routes/diagnostics.imaging-cardiac'
@@ -30,6 +36,11 @@ import { Route as DiagnosticsBiomarkersRouteImport } from './routes/diagnostics.
 import { Route as DiagnosticsAutonomicTestingRouteImport } from './routes/diagnostics.autonomic-testing'
 import { Route as DiagnosticsAllergyTestingRouteImport } from './routes/diagnostics.allergy-testing'
 
+const WeightLossGlp1Route = WeightLossGlp1RouteImport.update({
+  id: '/weight-loss-glp1',
+  path: '/weight-loss-glp1',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SpecialtiesRoute = SpecialtiesRouteImport.update({
   id: '/specialties',
   path: '/specialties',
@@ -65,6 +76,11 @@ const SpecialtiesIndexRoute = SpecialtiesIndexRouteImport.update({
   path: '/',
   getParentRoute: () => SpecialtiesRoute,
 } as any)
+const LongevityIndexRoute = LongevityIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => LongevityRoute,
+} as any)
 const DiagnosticsIndexRoute = DiagnosticsIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -97,6 +113,29 @@ const SpecialtiesCardiologyVascularRoute =
     id: '/cardiology-vascular',
     path: '/cardiology-vascular',
     getParentRoute: () => SpecialtiesRoute,
+  } as any)
+const LongevityWaitlistRoute = LongevityWaitlistRouteImport.update({
+  id: '/waitlist',
+  path: '/waitlist',
+  getParentRoute: () => LongevityRoute,
+} as any)
+const LongevityHormoneOptimizationRoute =
+  LongevityHormoneOptimizationRouteImport.update({
+    id: '/hormone-optimization',
+    path: '/hormone-optimization',
+    getParentRoute: () => LongevityRoute,
+  } as any)
+const LongevityHealthspanProgramsRoute =
+  LongevityHealthspanProgramsRouteImport.update({
+    id: '/healthspan-programs',
+    path: '/healthspan-programs',
+    getParentRoute: () => LongevityRoute,
+  } as any)
+const LongevityExecutivePhysicalsRoute =
+  LongevityExecutivePhysicalsRouteImport.update({
+    id: '/executive-physicals',
+    path: '/executive-physicals',
+    getParentRoute: () => LongevityRoute,
   } as any)
 const DiagnosticsSleepPulmonaryRoute =
   DiagnosticsSleepPulmonaryRouteImport.update({
@@ -143,9 +182,10 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/diagnostics': typeof DiagnosticsRouteWithChildren
   '/locations': typeof LocationsRoute
-  '/longevity': typeof LongevityRoute
+  '/longevity': typeof LongevityRouteWithChildren
   '/resources': typeof ResourcesRoute
   '/specialties': typeof SpecialtiesRouteWithChildren
+  '/weight-loss-glp1': typeof WeightLossGlp1Route
   '/diagnostics/allergy-testing': typeof DiagnosticsAllergyTestingRoute
   '/diagnostics/autonomic-testing': typeof DiagnosticsAutonomicTestingRoute
   '/diagnostics/biomarkers': typeof DiagnosticsBiomarkersRoute
@@ -153,19 +193,24 @@ export interface FileRoutesByFullPath {
   '/diagnostics/imaging-cardiac': typeof DiagnosticsImagingCardiacRoute
   '/diagnostics/sample-report': typeof DiagnosticsSampleReportRoute
   '/diagnostics/sleep-pulmonary': typeof DiagnosticsSleepPulmonaryRoute
+  '/longevity/executive-physicals': typeof LongevityExecutivePhysicalsRoute
+  '/longevity/healthspan-programs': typeof LongevityHealthspanProgramsRoute
+  '/longevity/hormone-optimization': typeof LongevityHormoneOptimizationRoute
+  '/longevity/waitlist': typeof LongevityWaitlistRoute
   '/specialties/cardiology-vascular': typeof SpecialtiesCardiologyVascularRoute
   '/specialties/neurology': typeof SpecialtiesNeurologyRoute
   '/specialties/pain-management': typeof SpecialtiesPainManagementRoute
   '/specialties/primary-care': typeof SpecialtiesPrimaryCareRoute
   '/specialties/sleep-medicine': typeof SpecialtiesSleepMedicineRoute
   '/diagnostics/': typeof DiagnosticsIndexRoute
+  '/longevity/': typeof LongevityIndexRoute
   '/specialties/': typeof SpecialtiesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/locations': typeof LocationsRoute
-  '/longevity': typeof LongevityRoute
   '/resources': typeof ResourcesRoute
+  '/weight-loss-glp1': typeof WeightLossGlp1Route
   '/diagnostics/allergy-testing': typeof DiagnosticsAllergyTestingRoute
   '/diagnostics/autonomic-testing': typeof DiagnosticsAutonomicTestingRoute
   '/diagnostics/biomarkers': typeof DiagnosticsBiomarkersRoute
@@ -173,12 +218,17 @@ export interface FileRoutesByTo {
   '/diagnostics/imaging-cardiac': typeof DiagnosticsImagingCardiacRoute
   '/diagnostics/sample-report': typeof DiagnosticsSampleReportRoute
   '/diagnostics/sleep-pulmonary': typeof DiagnosticsSleepPulmonaryRoute
+  '/longevity/executive-physicals': typeof LongevityExecutivePhysicalsRoute
+  '/longevity/healthspan-programs': typeof LongevityHealthspanProgramsRoute
+  '/longevity/hormone-optimization': typeof LongevityHormoneOptimizationRoute
+  '/longevity/waitlist': typeof LongevityWaitlistRoute
   '/specialties/cardiology-vascular': typeof SpecialtiesCardiologyVascularRoute
   '/specialties/neurology': typeof SpecialtiesNeurologyRoute
   '/specialties/pain-management': typeof SpecialtiesPainManagementRoute
   '/specialties/primary-care': typeof SpecialtiesPrimaryCareRoute
   '/specialties/sleep-medicine': typeof SpecialtiesSleepMedicineRoute
   '/diagnostics': typeof DiagnosticsIndexRoute
+  '/longevity': typeof LongevityIndexRoute
   '/specialties': typeof SpecialtiesIndexRoute
 }
 export interface FileRoutesById {
@@ -186,9 +236,10 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/diagnostics': typeof DiagnosticsRouteWithChildren
   '/locations': typeof LocationsRoute
-  '/longevity': typeof LongevityRoute
+  '/longevity': typeof LongevityRouteWithChildren
   '/resources': typeof ResourcesRoute
   '/specialties': typeof SpecialtiesRouteWithChildren
+  '/weight-loss-glp1': typeof WeightLossGlp1Route
   '/diagnostics/allergy-testing': typeof DiagnosticsAllergyTestingRoute
   '/diagnostics/autonomic-testing': typeof DiagnosticsAutonomicTestingRoute
   '/diagnostics/biomarkers': typeof DiagnosticsBiomarkersRoute
@@ -196,12 +247,17 @@ export interface FileRoutesById {
   '/diagnostics/imaging-cardiac': typeof DiagnosticsImagingCardiacRoute
   '/diagnostics/sample-report': typeof DiagnosticsSampleReportRoute
   '/diagnostics/sleep-pulmonary': typeof DiagnosticsSleepPulmonaryRoute
+  '/longevity/executive-physicals': typeof LongevityExecutivePhysicalsRoute
+  '/longevity/healthspan-programs': typeof LongevityHealthspanProgramsRoute
+  '/longevity/hormone-optimization': typeof LongevityHormoneOptimizationRoute
+  '/longevity/waitlist': typeof LongevityWaitlistRoute
   '/specialties/cardiology-vascular': typeof SpecialtiesCardiologyVascularRoute
   '/specialties/neurology': typeof SpecialtiesNeurologyRoute
   '/specialties/pain-management': typeof SpecialtiesPainManagementRoute
   '/specialties/primary-care': typeof SpecialtiesPrimaryCareRoute
   '/specialties/sleep-medicine': typeof SpecialtiesSleepMedicineRoute
   '/diagnostics/': typeof DiagnosticsIndexRoute
+  '/longevity/': typeof LongevityIndexRoute
   '/specialties/': typeof SpecialtiesIndexRoute
 }
 export interface FileRouteTypes {
@@ -213,6 +269,7 @@ export interface FileRouteTypes {
     | '/longevity'
     | '/resources'
     | '/specialties'
+    | '/weight-loss-glp1'
     | '/diagnostics/allergy-testing'
     | '/diagnostics/autonomic-testing'
     | '/diagnostics/biomarkers'
@@ -220,19 +277,24 @@ export interface FileRouteTypes {
     | '/diagnostics/imaging-cardiac'
     | '/diagnostics/sample-report'
     | '/diagnostics/sleep-pulmonary'
+    | '/longevity/executive-physicals'
+    | '/longevity/healthspan-programs'
+    | '/longevity/hormone-optimization'
+    | '/longevity/waitlist'
     | '/specialties/cardiology-vascular'
     | '/specialties/neurology'
     | '/specialties/pain-management'
     | '/specialties/primary-care'
     | '/specialties/sleep-medicine'
     | '/diagnostics/'
+    | '/longevity/'
     | '/specialties/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/locations'
-    | '/longevity'
     | '/resources'
+    | '/weight-loss-glp1'
     | '/diagnostics/allergy-testing'
     | '/diagnostics/autonomic-testing'
     | '/diagnostics/biomarkers'
@@ -240,12 +302,17 @@ export interface FileRouteTypes {
     | '/diagnostics/imaging-cardiac'
     | '/diagnostics/sample-report'
     | '/diagnostics/sleep-pulmonary'
+    | '/longevity/executive-physicals'
+    | '/longevity/healthspan-programs'
+    | '/longevity/hormone-optimization'
+    | '/longevity/waitlist'
     | '/specialties/cardiology-vascular'
     | '/specialties/neurology'
     | '/specialties/pain-management'
     | '/specialties/primary-care'
     | '/specialties/sleep-medicine'
     | '/diagnostics'
+    | '/longevity'
     | '/specialties'
   id:
     | '__root__'
@@ -255,6 +322,7 @@ export interface FileRouteTypes {
     | '/longevity'
     | '/resources'
     | '/specialties'
+    | '/weight-loss-glp1'
     | '/diagnostics/allergy-testing'
     | '/diagnostics/autonomic-testing'
     | '/diagnostics/biomarkers'
@@ -262,12 +330,17 @@ export interface FileRouteTypes {
     | '/diagnostics/imaging-cardiac'
     | '/diagnostics/sample-report'
     | '/diagnostics/sleep-pulmonary'
+    | '/longevity/executive-physicals'
+    | '/longevity/healthspan-programs'
+    | '/longevity/hormone-optimization'
+    | '/longevity/waitlist'
     | '/specialties/cardiology-vascular'
     | '/specialties/neurology'
     | '/specialties/pain-management'
     | '/specialties/primary-care'
     | '/specialties/sleep-medicine'
     | '/diagnostics/'
+    | '/longevity/'
     | '/specialties/'
   fileRoutesById: FileRoutesById
 }
@@ -275,13 +348,21 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DiagnosticsRoute: typeof DiagnosticsRouteWithChildren
   LocationsRoute: typeof LocationsRoute
-  LongevityRoute: typeof LongevityRoute
+  LongevityRoute: typeof LongevityRouteWithChildren
   ResourcesRoute: typeof ResourcesRoute
   SpecialtiesRoute: typeof SpecialtiesRouteWithChildren
+  WeightLossGlp1Route: typeof WeightLossGlp1Route
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/weight-loss-glp1': {
+      id: '/weight-loss-glp1'
+      path: '/weight-loss-glp1'
+      fullPath: '/weight-loss-glp1'
+      preLoaderRoute: typeof WeightLossGlp1RouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/specialties': {
       id: '/specialties'
       path: '/specialties'
@@ -331,6 +412,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SpecialtiesIndexRouteImport
       parentRoute: typeof SpecialtiesRoute
     }
+    '/longevity/': {
+      id: '/longevity/'
+      path: '/'
+      fullPath: '/longevity/'
+      preLoaderRoute: typeof LongevityIndexRouteImport
+      parentRoute: typeof LongevityRoute
+    }
     '/diagnostics/': {
       id: '/diagnostics/'
       path: '/'
@@ -372,6 +460,34 @@ declare module '@tanstack/react-router' {
       fullPath: '/specialties/cardiology-vascular'
       preLoaderRoute: typeof SpecialtiesCardiologyVascularRouteImport
       parentRoute: typeof SpecialtiesRoute
+    }
+    '/longevity/waitlist': {
+      id: '/longevity/waitlist'
+      path: '/waitlist'
+      fullPath: '/longevity/waitlist'
+      preLoaderRoute: typeof LongevityWaitlistRouteImport
+      parentRoute: typeof LongevityRoute
+    }
+    '/longevity/hormone-optimization': {
+      id: '/longevity/hormone-optimization'
+      path: '/hormone-optimization'
+      fullPath: '/longevity/hormone-optimization'
+      preLoaderRoute: typeof LongevityHormoneOptimizationRouteImport
+      parentRoute: typeof LongevityRoute
+    }
+    '/longevity/healthspan-programs': {
+      id: '/longevity/healthspan-programs'
+      path: '/healthspan-programs'
+      fullPath: '/longevity/healthspan-programs'
+      preLoaderRoute: typeof LongevityHealthspanProgramsRouteImport
+      parentRoute: typeof LongevityRoute
+    }
+    '/longevity/executive-physicals': {
+      id: '/longevity/executive-physicals'
+      path: '/executive-physicals'
+      fullPath: '/longevity/executive-physicals'
+      preLoaderRoute: typeof LongevityExecutivePhysicalsRouteImport
+      parentRoute: typeof LongevityRoute
     }
     '/diagnostics/sleep-pulmonary': {
       id: '/diagnostics/sleep-pulmonary'
@@ -451,6 +567,26 @@ const DiagnosticsRouteWithChildren = DiagnosticsRoute._addFileChildren(
   DiagnosticsRouteChildren,
 )
 
+interface LongevityRouteChildren {
+  LongevityExecutivePhysicalsRoute: typeof LongevityExecutivePhysicalsRoute
+  LongevityHealthspanProgramsRoute: typeof LongevityHealthspanProgramsRoute
+  LongevityHormoneOptimizationRoute: typeof LongevityHormoneOptimizationRoute
+  LongevityWaitlistRoute: typeof LongevityWaitlistRoute
+  LongevityIndexRoute: typeof LongevityIndexRoute
+}
+
+const LongevityRouteChildren: LongevityRouteChildren = {
+  LongevityExecutivePhysicalsRoute: LongevityExecutivePhysicalsRoute,
+  LongevityHealthspanProgramsRoute: LongevityHealthspanProgramsRoute,
+  LongevityHormoneOptimizationRoute: LongevityHormoneOptimizationRoute,
+  LongevityWaitlistRoute: LongevityWaitlistRoute,
+  LongevityIndexRoute: LongevityIndexRoute,
+}
+
+const LongevityRouteWithChildren = LongevityRoute._addFileChildren(
+  LongevityRouteChildren,
+)
+
 interface SpecialtiesRouteChildren {
   SpecialtiesCardiologyVascularRoute: typeof SpecialtiesCardiologyVascularRoute
   SpecialtiesNeurologyRoute: typeof SpecialtiesNeurologyRoute
@@ -477,9 +613,10 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DiagnosticsRoute: DiagnosticsRouteWithChildren,
   LocationsRoute: LocationsRoute,
-  LongevityRoute: LongevityRoute,
+  LongevityRoute: LongevityRouteWithChildren,
   ResourcesRoute: ResourcesRoute,
   SpecialtiesRoute: SpecialtiesRouteWithChildren,
+  WeightLossGlp1Route: WeightLossGlp1Route,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
