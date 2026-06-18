@@ -16,6 +16,11 @@ import { Route as LocationsRouteImport } from './routes/locations'
 import { Route as DiagnosticsRouteImport } from './routes/diagnostics'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as SpecialtiesIndexRouteImport } from './routes/specialties.index'
+import { Route as SpecialtiesSleepMedicineRouteImport } from './routes/specialties.sleep-medicine'
+import { Route as SpecialtiesPrimaryCareRouteImport } from './routes/specialties.primary-care'
+import { Route as SpecialtiesPainManagementRouteImport } from './routes/specialties.pain-management'
+import { Route as SpecialtiesNeurologyRouteImport } from './routes/specialties.neurology'
+import { Route as SpecialtiesCardiologyVascularRouteImport } from './routes/specialties.cardiology-vascular'
 
 const SpecialtiesRoute = SpecialtiesRouteImport.update({
   id: '/specialties',
@@ -52,6 +57,34 @@ const SpecialtiesIndexRoute = SpecialtiesIndexRouteImport.update({
   path: '/',
   getParentRoute: () => SpecialtiesRoute,
 } as any)
+const SpecialtiesSleepMedicineRoute =
+  SpecialtiesSleepMedicineRouteImport.update({
+    id: '/sleep-medicine',
+    path: '/sleep-medicine',
+    getParentRoute: () => SpecialtiesRoute,
+  } as any)
+const SpecialtiesPrimaryCareRoute = SpecialtiesPrimaryCareRouteImport.update({
+  id: '/primary-care',
+  path: '/primary-care',
+  getParentRoute: () => SpecialtiesRoute,
+} as any)
+const SpecialtiesPainManagementRoute =
+  SpecialtiesPainManagementRouteImport.update({
+    id: '/pain-management',
+    path: '/pain-management',
+    getParentRoute: () => SpecialtiesRoute,
+  } as any)
+const SpecialtiesNeurologyRoute = SpecialtiesNeurologyRouteImport.update({
+  id: '/neurology',
+  path: '/neurology',
+  getParentRoute: () => SpecialtiesRoute,
+} as any)
+const SpecialtiesCardiologyVascularRoute =
+  SpecialtiesCardiologyVascularRouteImport.update({
+    id: '/cardiology-vascular',
+    path: '/cardiology-vascular',
+    getParentRoute: () => SpecialtiesRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -60,6 +93,11 @@ export interface FileRoutesByFullPath {
   '/longevity': typeof LongevityRoute
   '/resources': typeof ResourcesRoute
   '/specialties': typeof SpecialtiesRouteWithChildren
+  '/specialties/cardiology-vascular': typeof SpecialtiesCardiologyVascularRoute
+  '/specialties/neurology': typeof SpecialtiesNeurologyRoute
+  '/specialties/pain-management': typeof SpecialtiesPainManagementRoute
+  '/specialties/primary-care': typeof SpecialtiesPrimaryCareRoute
+  '/specialties/sleep-medicine': typeof SpecialtiesSleepMedicineRoute
   '/specialties/': typeof SpecialtiesIndexRoute
 }
 export interface FileRoutesByTo {
@@ -68,6 +106,11 @@ export interface FileRoutesByTo {
   '/locations': typeof LocationsRoute
   '/longevity': typeof LongevityRoute
   '/resources': typeof ResourcesRoute
+  '/specialties/cardiology-vascular': typeof SpecialtiesCardiologyVascularRoute
+  '/specialties/neurology': typeof SpecialtiesNeurologyRoute
+  '/specialties/pain-management': typeof SpecialtiesPainManagementRoute
+  '/specialties/primary-care': typeof SpecialtiesPrimaryCareRoute
+  '/specialties/sleep-medicine': typeof SpecialtiesSleepMedicineRoute
   '/specialties': typeof SpecialtiesIndexRoute
 }
 export interface FileRoutesById {
@@ -78,6 +121,11 @@ export interface FileRoutesById {
   '/longevity': typeof LongevityRoute
   '/resources': typeof ResourcesRoute
   '/specialties': typeof SpecialtiesRouteWithChildren
+  '/specialties/cardiology-vascular': typeof SpecialtiesCardiologyVascularRoute
+  '/specialties/neurology': typeof SpecialtiesNeurologyRoute
+  '/specialties/pain-management': typeof SpecialtiesPainManagementRoute
+  '/specialties/primary-care': typeof SpecialtiesPrimaryCareRoute
+  '/specialties/sleep-medicine': typeof SpecialtiesSleepMedicineRoute
   '/specialties/': typeof SpecialtiesIndexRoute
 }
 export interface FileRouteTypes {
@@ -89,6 +137,11 @@ export interface FileRouteTypes {
     | '/longevity'
     | '/resources'
     | '/specialties'
+    | '/specialties/cardiology-vascular'
+    | '/specialties/neurology'
+    | '/specialties/pain-management'
+    | '/specialties/primary-care'
+    | '/specialties/sleep-medicine'
     | '/specialties/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -97,6 +150,11 @@ export interface FileRouteTypes {
     | '/locations'
     | '/longevity'
     | '/resources'
+    | '/specialties/cardiology-vascular'
+    | '/specialties/neurology'
+    | '/specialties/pain-management'
+    | '/specialties/primary-care'
+    | '/specialties/sleep-medicine'
     | '/specialties'
   id:
     | '__root__'
@@ -106,6 +164,11 @@ export interface FileRouteTypes {
     | '/longevity'
     | '/resources'
     | '/specialties'
+    | '/specialties/cardiology-vascular'
+    | '/specialties/neurology'
+    | '/specialties/pain-management'
+    | '/specialties/primary-care'
+    | '/specialties/sleep-medicine'
     | '/specialties/'
   fileRoutesById: FileRoutesById
 }
@@ -169,14 +232,59 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SpecialtiesIndexRouteImport
       parentRoute: typeof SpecialtiesRoute
     }
+    '/specialties/sleep-medicine': {
+      id: '/specialties/sleep-medicine'
+      path: '/sleep-medicine'
+      fullPath: '/specialties/sleep-medicine'
+      preLoaderRoute: typeof SpecialtiesSleepMedicineRouteImport
+      parentRoute: typeof SpecialtiesRoute
+    }
+    '/specialties/primary-care': {
+      id: '/specialties/primary-care'
+      path: '/primary-care'
+      fullPath: '/specialties/primary-care'
+      preLoaderRoute: typeof SpecialtiesPrimaryCareRouteImport
+      parentRoute: typeof SpecialtiesRoute
+    }
+    '/specialties/pain-management': {
+      id: '/specialties/pain-management'
+      path: '/pain-management'
+      fullPath: '/specialties/pain-management'
+      preLoaderRoute: typeof SpecialtiesPainManagementRouteImport
+      parentRoute: typeof SpecialtiesRoute
+    }
+    '/specialties/neurology': {
+      id: '/specialties/neurology'
+      path: '/neurology'
+      fullPath: '/specialties/neurology'
+      preLoaderRoute: typeof SpecialtiesNeurologyRouteImport
+      parentRoute: typeof SpecialtiesRoute
+    }
+    '/specialties/cardiology-vascular': {
+      id: '/specialties/cardiology-vascular'
+      path: '/cardiology-vascular'
+      fullPath: '/specialties/cardiology-vascular'
+      preLoaderRoute: typeof SpecialtiesCardiologyVascularRouteImport
+      parentRoute: typeof SpecialtiesRoute
+    }
   }
 }
 
 interface SpecialtiesRouteChildren {
+  SpecialtiesCardiologyVascularRoute: typeof SpecialtiesCardiologyVascularRoute
+  SpecialtiesNeurologyRoute: typeof SpecialtiesNeurologyRoute
+  SpecialtiesPainManagementRoute: typeof SpecialtiesPainManagementRoute
+  SpecialtiesPrimaryCareRoute: typeof SpecialtiesPrimaryCareRoute
+  SpecialtiesSleepMedicineRoute: typeof SpecialtiesSleepMedicineRoute
   SpecialtiesIndexRoute: typeof SpecialtiesIndexRoute
 }
 
 const SpecialtiesRouteChildren: SpecialtiesRouteChildren = {
+  SpecialtiesCardiologyVascularRoute: SpecialtiesCardiologyVascularRoute,
+  SpecialtiesNeurologyRoute: SpecialtiesNeurologyRoute,
+  SpecialtiesPainManagementRoute: SpecialtiesPainManagementRoute,
+  SpecialtiesPrimaryCareRoute: SpecialtiesPrimaryCareRoute,
+  SpecialtiesSleepMedicineRoute: SpecialtiesSleepMedicineRoute,
   SpecialtiesIndexRoute: SpecialtiesIndexRoute,
 }
 
