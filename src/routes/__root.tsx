@@ -11,6 +11,8 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { SiteHeader } from "@/components/site/SiteHeader";
+import { SiteFooter } from "@/components/site/SiteFooter";
 
 function NotFoundComponent() {
   return (
@@ -78,7 +80,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { name: "theme-color", content: "#1B4332" },
-      { property: "og:site_name", content: "Verdant Allergy Clinic" },
+      { property: "og:site_name", content: "Umbrella Health" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -90,6 +92,19 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         href: "https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap",
       },
       { rel: "stylesheet", href: appCss },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          name: "Umbrella Health",
+          url: "/",
+          logo: "/favicon.ico",
+          sameAs: [],
+        }),
+      },
     ],
   }),
   shellComponent: RootShell,
@@ -117,7 +132,24 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Outlet />
+      <div className="relative">
+        <SiteHeader />
+
+        {/* Fixed footer for scroll-reveal effect */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none fixed inset-x-0 bottom-0 z-0"
+        >
+          <div className="pointer-events-auto">
+            <SiteFooter />
+          </div>
+        </div>
+
+        <div className="relative z-10 bg-background">
+          <Outlet />
+          <div aria-hidden="true" className="h-[540px] sm:h-[620px]" />
+        </div>
+      </div>
     </QueryClientProvider>
   );
 }

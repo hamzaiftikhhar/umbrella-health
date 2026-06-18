@@ -1,80 +1,102 @@
 import { motion } from "framer-motion";
+import {
+  HeartPulse,
+  Stethoscope,
+  Brain,
+  Moon,
+  Activity,
+  FlaskConical,
+  ScanLine,
+  Syringe,
+} from "lucide-react";
+import { Container } from "./primitives/Container";
 import { SectionHeading } from "./primitives/SectionHeading";
-import { Reveal } from "./primitives/Reveal";
-import { PremiumButton } from "./primitives/PremiumButton";
+import { BookButton } from "./primitives/BookButton";
 
 const orbit = [
-  { label: "Nasal spray", img: "https://images.unsplash.com/photo-1631549916768-4119b2e5f926?auto=format&fit=crop&w=400&q=80", angle: 0 },
-  { label: "Allergen panel", img: "https://images.unsplash.com/photo-1559757175-08fdca44edd2?auto=format&fit=crop&w=400&q=80", angle: 60 },
-  { label: "Tincture", img: "https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=400&q=80", angle: 120 },
-  { label: "Inhaler", img: "https://images.unsplash.com/photo-1584017912335-d8a1f9c1d1bb?auto=format&fit=crop&w=400&q=80", angle: 180 },
-  { label: "Test strips", img: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=400&q=80", angle: 240 },
-  { label: "Topical", img: "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=400&q=80", angle: 300 },
+  { icon: HeartPulse, label: "Cardiology", angle: 0 },
+  { icon: Brain, label: "Neurology", angle: 45 },
+  { icon: Moon, label: "Sleep", angle: 90 },
+  { icon: Activity, label: "Pain Mgmt", angle: 135 },
+  { icon: Stethoscope, label: "Primary Care", angle: 180 },
+  { icon: FlaskConical, label: "Biomarkers", angle: 225 },
+  { icon: ScanLine, label: "Imaging", angle: 270 },
+  { icon: Syringe, label: "GLP-1", angle: 315 },
 ];
 
 export function CareDiagram() {
   return (
-    <section aria-labelledby="care-heading" className="py-24 sm:py-32">
-      <div className="mx-auto max-w-6xl px-5 sm:px-8">
-        <div className="relative mx-auto aspect-square max-w-[640px]">
-          {/* Dashed orbit ring */}
-          <div className="absolute inset-[12%] rounded-full border border-dashed border-primary/25" />
-          <div className="absolute inset-[2%] rounded-full border border-dashed border-primary/10" />
+    <section
+      id="how"
+      aria-labelledby="diagram-heading"
+      className="overflow-hidden py-24 sm:py-32"
+    >
+      <Container>
+        <div className="grid items-center gap-12 md:grid-cols-[1fr_1.1fr] md:gap-20">
+          <SectionHeading
+            as="h2"
+            eyebrow="How it works"
+            title="One team. One record."
+            accent="One Umbrella."
+            description="Your primary doctor, your specialists, your labs, your imaging,
+            your longevity plan — all looking at the same data, in the same place."
+          />
 
-          {/* Center heading */}
-          <div className="absolute inset-0 flex items-center justify-center">
-            <Reveal>
-              <div className="max-w-xs text-center">
-                <SectionHeading
-                  as="h2"
-                  align="center"
-                  title="Comprehensive allergy care:"
-                  accent="test, diagnose, treat."
-                />
-                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-                  One clinic, one team, one plan — from your first symptom check
-                  to long-term immunotherapy that actually works.
+          <div className="relative mx-auto h-[420px] w-[420px] sm:h-[520px] sm:w-[520px]">
+            {/* Center disc */}
+            <div className="absolute left-1/2 top-1/2 grid h-32 w-32 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-primary text-primary-foreground shadow-[var(--shadow-elegant)] sm:h-40 sm:w-40">
+              <div className="text-center">
+                <p className="font-display text-xl italic">Umbrella</p>
+                <p className="text-[10px] uppercase tracking-[0.18em] opacity-80">
+                  one record
                 </p>
-                <div className="mt-6 flex justify-center">
-                  <PremiumButton variant="outline">Explore our care</PremiumButton>
-                </div>
               </div>
-            </Reveal>
-          </div>
+            </div>
 
-          {/* Orbit nodes */}
-          {orbit.map((node, i) => {
-            const rad = (node.angle * Math.PI) / 180;
-            const r = 44; // percent radius
-            const x = 50 + r * Math.cos(rad);
-            const y = 50 + r * Math.sin(rad);
-            return (
-              <motion.div
-                key={node.label}
-                className="absolute"
-                style={{ left: `${x}%`, top: `${y}%`, transform: "translate(-50%, -50%)" }}
-                initial={{ opacity: 0, scale: 0.6 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: i * 0.08 }}
-              >
+            {/* Orbit ring */}
+            <div className="absolute inset-8 rounded-full border border-dashed border-primary/20" />
+
+            {orbit.map((o, i) => {
+              const r = 180;
+              const rad = (o.angle * Math.PI) / 180;
+              const x = Math.cos(rad) * r;
+              const y = Math.sin(rad) * r;
+              return (
                 <motion.div
-                  animate={{ y: [0, -6, 0] }}
-                  transition={{ duration: 5 + i * 0.4, repeat: Infinity, ease: "easeInOut" }}
-                  className="flex flex-col items-center gap-2"
+                  key={o.label}
+                  className="absolute left-1/2 top-1/2"
+                  style={{ x, y }}
+                  initial={{ opacity: 0, scale: 0.6 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.5, delay: i * 0.06 }}
                 >
-                  <div className="grid h-16 w-16 place-items-center overflow-hidden rounded-full bg-card shadow-[var(--shadow-soft)] sm:h-20 sm:w-20">
-                    <img src={node.img} alt={node.label} className="h-full w-full object-cover" loading="lazy" />
-                  </div>
-                  <span className="rounded-full bg-background/90 px-2.5 py-1 text-[10px] font-medium uppercase tracking-wider text-muted-foreground backdrop-blur sm:text-xs">
-                    {node.label}
-                  </span>
+                  <motion.div
+                    animate={{ y: [0, -6, 0] }}
+                    transition={{
+                      duration: 3 + (i % 3),
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    }}
+                    className="-translate-x-1/2 -translate-y-1/2"
+                  >
+                    <div className="grid h-16 w-16 place-items-center rounded-full bg-card text-primary shadow-[var(--shadow-card)] sm:h-20 sm:w-20">
+                      <o.icon className="h-6 w-6 sm:h-7 sm:w-7" />
+                    </div>
+                    <p className="mt-1.5 text-center text-[10px] font-medium uppercase tracking-wider text-muted-foreground">
+                      {o.label}
+                    </p>
+                  </motion.div>
                 </motion.div>
-              </motion.div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
-      </div>
+
+        <div className="mt-12 flex justify-center">
+          <BookButton>Book your first visit</BookButton>
+        </div>
+      </Container>
     </section>
   );
 }
