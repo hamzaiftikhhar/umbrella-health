@@ -15,6 +15,7 @@ import { Route as LongevityRouteImport } from './routes/longevity'
 import { Route as LocationsRouteImport } from './routes/locations'
 import { Route as DiagnosticsRouteImport } from './routes/diagnostics'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as SpecialtiesIndexRouteImport } from './routes/specialties.index'
 
 const SpecialtiesRoute = SpecialtiesRouteImport.update({
   id: '/specialties',
@@ -46,6 +47,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SpecialtiesIndexRoute = SpecialtiesIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => SpecialtiesRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -53,7 +59,8 @@ export interface FileRoutesByFullPath {
   '/locations': typeof LocationsRoute
   '/longevity': typeof LongevityRoute
   '/resources': typeof ResourcesRoute
-  '/specialties': typeof SpecialtiesRoute
+  '/specialties': typeof SpecialtiesRouteWithChildren
+  '/specialties/': typeof SpecialtiesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -61,7 +68,7 @@ export interface FileRoutesByTo {
   '/locations': typeof LocationsRoute
   '/longevity': typeof LongevityRoute
   '/resources': typeof ResourcesRoute
-  '/specialties': typeof SpecialtiesRoute
+  '/specialties': typeof SpecialtiesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -70,7 +77,8 @@ export interface FileRoutesById {
   '/locations': typeof LocationsRoute
   '/longevity': typeof LongevityRoute
   '/resources': typeof ResourcesRoute
-  '/specialties': typeof SpecialtiesRoute
+  '/specialties': typeof SpecialtiesRouteWithChildren
+  '/specialties/': typeof SpecialtiesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -81,6 +89,7 @@ export interface FileRouteTypes {
     | '/longevity'
     | '/resources'
     | '/specialties'
+    | '/specialties/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -97,6 +106,7 @@ export interface FileRouteTypes {
     | '/longevity'
     | '/resources'
     | '/specialties'
+    | '/specialties/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -105,7 +115,7 @@ export interface RootRouteChildren {
   LocationsRoute: typeof LocationsRoute
   LongevityRoute: typeof LongevityRoute
   ResourcesRoute: typeof ResourcesRoute
-  SpecialtiesRoute: typeof SpecialtiesRoute
+  SpecialtiesRoute: typeof SpecialtiesRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
@@ -152,8 +162,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/specialties/': {
+      id: '/specialties/'
+      path: '/'
+      fullPath: '/specialties/'
+      preLoaderRoute: typeof SpecialtiesIndexRouteImport
+      parentRoute: typeof SpecialtiesRoute
+    }
   }
 }
+
+interface SpecialtiesRouteChildren {
+  SpecialtiesIndexRoute: typeof SpecialtiesIndexRoute
+}
+
+const SpecialtiesRouteChildren: SpecialtiesRouteChildren = {
+  SpecialtiesIndexRoute: SpecialtiesIndexRoute,
+}
+
+const SpecialtiesRouteWithChildren = SpecialtiesRoute._addFileChildren(
+  SpecialtiesRouteChildren,
+)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
@@ -161,7 +190,7 @@ const rootRouteChildren: RootRouteChildren = {
   LocationsRoute: LocationsRoute,
   LongevityRoute: LongevityRoute,
   ResourcesRoute: ResourcesRoute,
-  SpecialtiesRoute: SpecialtiesRoute,
+  SpecialtiesRoute: SpecialtiesRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
