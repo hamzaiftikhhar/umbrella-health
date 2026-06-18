@@ -49,6 +49,9 @@ import { Route as DiagnosticsAutonomicTestingRouteImport } from './routes/diagno
 import { Route as DiagnosticsAllergyTestingRouteImport } from './routes/diagnostics.allergy-testing'
 import { Route as ResourcesDecodingYourDiagnosticsIndexRouteImport } from './routes/resources.decoding-your-diagnostics.index'
 import { Route as ResourcesBusyProfessionalsIndexRouteImport } from './routes/resources.busy-professionals.index'
+import { Route as ResourcesDecodingYourDiagnosticsCholesterolPanelExplainedRouteImport } from './routes/resources.decoding-your-diagnostics.cholesterol-panel-explained'
+import { Route as ResourcesBusyProfessionalsSleepDebtGuideRouteImport } from './routes/resources.busy-professionals.sleep-debt-guide'
+import { Route as ResourcesBusyProfessionalsGlp1WhatToExpectRouteImport } from './routes/resources.busy-professionals.glp1-what-to-expect'
 
 const WeightLossGlp1Route = WeightLossGlp1RouteImport.update({
   id: '/weight-loss-glp1',
@@ -266,6 +269,24 @@ const ResourcesBusyProfessionalsIndexRoute =
     path: '/',
     getParentRoute: () => ResourcesBusyProfessionalsRoute,
   } as any)
+const ResourcesDecodingYourDiagnosticsCholesterolPanelExplainedRoute =
+  ResourcesDecodingYourDiagnosticsCholesterolPanelExplainedRouteImport.update({
+    id: '/cholesterol-panel-explained',
+    path: '/cholesterol-panel-explained',
+    getParentRoute: () => ResourcesDecodingYourDiagnosticsRoute,
+  } as any)
+const ResourcesBusyProfessionalsSleepDebtGuideRoute =
+  ResourcesBusyProfessionalsSleepDebtGuideRouteImport.update({
+    id: '/sleep-debt-guide',
+    path: '/sleep-debt-guide',
+    getParentRoute: () => ResourcesBusyProfessionalsRoute,
+  } as any)
+const ResourcesBusyProfessionalsGlp1WhatToExpectRoute =
+  ResourcesBusyProfessionalsGlp1WhatToExpectRouteImport.update({
+    id: '/glp1-what-to-expect',
+    path: '/glp1-what-to-expect',
+    getParentRoute: () => ResourcesBusyProfessionalsRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -306,6 +327,9 @@ export interface FileRoutesByFullPath {
   '/longevity/': typeof LongevityIndexRoute
   '/resources/': typeof ResourcesIndexRoute
   '/specialties/': typeof SpecialtiesIndexRoute
+  '/resources/busy-professionals/glp1-what-to-expect': typeof ResourcesBusyProfessionalsGlp1WhatToExpectRoute
+  '/resources/busy-professionals/sleep-debt-guide': typeof ResourcesBusyProfessionalsSleepDebtGuideRoute
+  '/resources/decoding-your-diagnostics/cholesterol-panel-explained': typeof ResourcesDecodingYourDiagnosticsCholesterolPanelExplainedRoute
   '/resources/busy-professionals/': typeof ResourcesBusyProfessionalsIndexRoute
   '/resources/decoding-your-diagnostics/': typeof ResourcesDecodingYourDiagnosticsIndexRoute
 }
@@ -342,6 +366,9 @@ export interface FileRoutesByTo {
   '/longevity': typeof LongevityIndexRoute
   '/resources': typeof ResourcesIndexRoute
   '/specialties': typeof SpecialtiesIndexRoute
+  '/resources/busy-professionals/glp1-what-to-expect': typeof ResourcesBusyProfessionalsGlp1WhatToExpectRoute
+  '/resources/busy-professionals/sleep-debt-guide': typeof ResourcesBusyProfessionalsSleepDebtGuideRoute
+  '/resources/decoding-your-diagnostics/cholesterol-panel-explained': typeof ResourcesDecodingYourDiagnosticsCholesterolPanelExplainedRoute
   '/resources/busy-professionals': typeof ResourcesBusyProfessionalsIndexRoute
   '/resources/decoding-your-diagnostics': typeof ResourcesDecodingYourDiagnosticsIndexRoute
 }
@@ -385,6 +412,9 @@ export interface FileRoutesById {
   '/longevity/': typeof LongevityIndexRoute
   '/resources/': typeof ResourcesIndexRoute
   '/specialties/': typeof SpecialtiesIndexRoute
+  '/resources/busy-professionals/glp1-what-to-expect': typeof ResourcesBusyProfessionalsGlp1WhatToExpectRoute
+  '/resources/busy-professionals/sleep-debt-guide': typeof ResourcesBusyProfessionalsSleepDebtGuideRoute
+  '/resources/decoding-your-diagnostics/cholesterol-panel-explained': typeof ResourcesDecodingYourDiagnosticsCholesterolPanelExplainedRoute
   '/resources/busy-professionals/': typeof ResourcesBusyProfessionalsIndexRoute
   '/resources/decoding-your-diagnostics/': typeof ResourcesDecodingYourDiagnosticsIndexRoute
 }
@@ -429,6 +459,9 @@ export interface FileRouteTypes {
     | '/longevity/'
     | '/resources/'
     | '/specialties/'
+    | '/resources/busy-professionals/glp1-what-to-expect'
+    | '/resources/busy-professionals/sleep-debt-guide'
+    | '/resources/decoding-your-diagnostics/cholesterol-panel-explained'
     | '/resources/busy-professionals/'
     | '/resources/decoding-your-diagnostics/'
   fileRoutesByTo: FileRoutesByTo
@@ -465,6 +498,9 @@ export interface FileRouteTypes {
     | '/longevity'
     | '/resources'
     | '/specialties'
+    | '/resources/busy-professionals/glp1-what-to-expect'
+    | '/resources/busy-professionals/sleep-debt-guide'
+    | '/resources/decoding-your-diagnostics/cholesterol-panel-explained'
     | '/resources/busy-professionals'
     | '/resources/decoding-your-diagnostics'
   id:
@@ -507,6 +543,9 @@ export interface FileRouteTypes {
     | '/longevity/'
     | '/resources/'
     | '/specialties/'
+    | '/resources/busy-professionals/glp1-what-to-expect'
+    | '/resources/busy-professionals/sleep-debt-guide'
+    | '/resources/decoding-your-diagnostics/cholesterol-panel-explained'
     | '/resources/busy-professionals/'
     | '/resources/decoding-your-diagnostics/'
   fileRoutesById: FileRoutesById
@@ -811,6 +850,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ResourcesBusyProfessionalsIndexRouteImport
       parentRoute: typeof ResourcesBusyProfessionalsRoute
     }
+    '/resources/decoding-your-diagnostics/cholesterol-panel-explained': {
+      id: '/resources/decoding-your-diagnostics/cholesterol-panel-explained'
+      path: '/cholesterol-panel-explained'
+      fullPath: '/resources/decoding-your-diagnostics/cholesterol-panel-explained'
+      preLoaderRoute: typeof ResourcesDecodingYourDiagnosticsCholesterolPanelExplainedRouteImport
+      parentRoute: typeof ResourcesDecodingYourDiagnosticsRoute
+    }
+    '/resources/busy-professionals/sleep-debt-guide': {
+      id: '/resources/busy-professionals/sleep-debt-guide'
+      path: '/sleep-debt-guide'
+      fullPath: '/resources/busy-professionals/sleep-debt-guide'
+      preLoaderRoute: typeof ResourcesBusyProfessionalsSleepDebtGuideRouteImport
+      parentRoute: typeof ResourcesBusyProfessionalsRoute
+    }
+    '/resources/busy-professionals/glp1-what-to-expect': {
+      id: '/resources/busy-professionals/glp1-what-to-expect'
+      path: '/glp1-what-to-expect'
+      fullPath: '/resources/busy-professionals/glp1-what-to-expect'
+      preLoaderRoute: typeof ResourcesBusyProfessionalsGlp1WhatToExpectRouteImport
+      parentRoute: typeof ResourcesBusyProfessionalsRoute
+    }
   }
 }
 
@@ -861,11 +921,17 @@ const LongevityRouteWithChildren = LongevityRoute._addFileChildren(
 )
 
 interface ResourcesBusyProfessionalsRouteChildren {
+  ResourcesBusyProfessionalsGlp1WhatToExpectRoute: typeof ResourcesBusyProfessionalsGlp1WhatToExpectRoute
+  ResourcesBusyProfessionalsSleepDebtGuideRoute: typeof ResourcesBusyProfessionalsSleepDebtGuideRoute
   ResourcesBusyProfessionalsIndexRoute: typeof ResourcesBusyProfessionalsIndexRoute
 }
 
 const ResourcesBusyProfessionalsRouteChildren: ResourcesBusyProfessionalsRouteChildren =
   {
+    ResourcesBusyProfessionalsGlp1WhatToExpectRoute:
+      ResourcesBusyProfessionalsGlp1WhatToExpectRoute,
+    ResourcesBusyProfessionalsSleepDebtGuideRoute:
+      ResourcesBusyProfessionalsSleepDebtGuideRoute,
     ResourcesBusyProfessionalsIndexRoute: ResourcesBusyProfessionalsIndexRoute,
   }
 
@@ -875,11 +941,14 @@ const ResourcesBusyProfessionalsRouteWithChildren =
   )
 
 interface ResourcesDecodingYourDiagnosticsRouteChildren {
+  ResourcesDecodingYourDiagnosticsCholesterolPanelExplainedRoute: typeof ResourcesDecodingYourDiagnosticsCholesterolPanelExplainedRoute
   ResourcesDecodingYourDiagnosticsIndexRoute: typeof ResourcesDecodingYourDiagnosticsIndexRoute
 }
 
 const ResourcesDecodingYourDiagnosticsRouteChildren: ResourcesDecodingYourDiagnosticsRouteChildren =
   {
+    ResourcesDecodingYourDiagnosticsCholesterolPanelExplainedRoute:
+      ResourcesDecodingYourDiagnosticsCholesterolPanelExplainedRoute,
     ResourcesDecodingYourDiagnosticsIndexRoute:
       ResourcesDecodingYourDiagnosticsIndexRoute,
   }
