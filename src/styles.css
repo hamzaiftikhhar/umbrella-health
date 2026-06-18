@@ -143,3 +143,12 @@
   font-family: var(--font-display);
   font-optical-sizing: auto;
 }
+
+@utility curved-bottom {
+  -webkit-mask-image: radial-gradient(120% 90% at 50% 0%, black 70%, transparent 71%);
+          mask-image: radial-gradient(120% 90% at 50% 0%, black 70%, transparent 71%);
+}
+
+@utility text-balance {
+  text-wrap: balance;
+}
