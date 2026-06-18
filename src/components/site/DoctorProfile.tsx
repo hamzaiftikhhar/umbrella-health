@@ -10,7 +10,7 @@ export function DoctorProfile() {
           <div className="relative mx-auto aspect-square w-full max-w-sm">
             <div className="absolute inset-0 -z-10 rounded-full bg-sage/40 blur-3xl" />
             <img
-              src="https-://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=900&q=80".replace("https-://","https://")
+              src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=900&q=80"
               alt="Dr. Maya Hart, founding allergist at Verdant Clinic"
               className="h-full w-full rounded-full object-cover shadow-[var(--shadow-elegant)]"
               loading="lazy"
