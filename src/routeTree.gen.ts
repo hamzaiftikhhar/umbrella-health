@@ -11,18 +11,23 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as WeightLossGlp1RouteImport } from './routes/weight-loss-glp1'
 import { Route as VisitUsRouteImport } from './routes/visit-us'
+import { Route as TermsRouteImport } from './routes/terms'
 import { Route as SpecialtiesRouteImport } from './routes/specialties'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ReviewsRouteImport } from './routes/reviews'
 import { Route as ResourcesRouteImport } from './routes/resources'
 import { Route as ReferAFriendRouteImport } from './routes/refer-a-friend'
+import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as PortalRouteImport } from './routes/portal'
 import { Route as OurPhysiciansRouteImport } from './routes/our-physicians'
 import { Route as LongevityRouteImport } from './routes/longevity'
 import { Route as LocationsRouteImport } from './routes/locations'
 import { Route as InsuranceRouteImport } from './routes/insurance'
+import { Route as HipaaAccessibilityRouteImport } from './routes/hipaa-accessibility'
 import { Route as FaqRouteImport } from './routes/faq'
 import { Route as EmployersRouteImport } from './routes/employers'
 import { Route as DiagnosticsRouteImport } from './routes/diagnostics'
+import { Route as CareersRouteImport } from './routes/careers'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as SpecialtiesIndexRouteImport } from './routes/specialties.index'
 import { Route as ResourcesIndexRouteImport } from './routes/resources.index'
@@ -68,9 +73,19 @@ const VisitUsRoute = VisitUsRouteImport.update({
   path: '/visit-us',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SpecialtiesRoute = SpecialtiesRouteImport.update({
   id: '/specialties',
   path: '/specialties',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ReviewsRoute = ReviewsRouteImport.update({
@@ -86,6 +101,11 @@ const ResourcesRoute = ResourcesRouteImport.update({
 const ReferAFriendRoute = ReferAFriendRouteImport.update({
   id: '/refer-a-friend',
   path: '/refer-a-friend',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PortalRoute = PortalRouteImport.update({
@@ -113,6 +133,11 @@ const InsuranceRoute = InsuranceRouteImport.update({
   path: '/insurance',
   getParentRoute: () => rootRouteImport,
 } as any)
+const HipaaAccessibilityRoute = HipaaAccessibilityRouteImport.update({
+  id: '/hipaa-accessibility',
+  path: '/hipaa-accessibility',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const FaqRoute = FaqRouteImport.update({
   id: '/faq',
   path: '/faq',
@@ -126,6 +151,11 @@ const EmployersRoute = EmployersRouteImport.update({
 const DiagnosticsRoute = DiagnosticsRouteImport.update({
   id: '/diagnostics',
   path: '/diagnostics',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CareersRoute = CareersRouteImport.update({
+  id: '/careers',
+  path: '/careers',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -320,18 +350,23 @@ const ResourcesBusyProfessionalsGlp1WhatToExpectRoute =
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/careers': typeof CareersRoute
   '/diagnostics': typeof DiagnosticsRouteWithChildren
   '/employers': typeof EmployersRoute
   '/faq': typeof FaqRoute
+  '/hipaa-accessibility': typeof HipaaAccessibilityRoute
   '/insurance': typeof InsuranceRoute
   '/locations': typeof LocationsRouteWithChildren
   '/longevity': typeof LongevityRouteWithChildren
   '/our-physicians': typeof OurPhysiciansRoute
   '/portal': typeof PortalRoute
+  '/privacy': typeof PrivacyRoute
   '/refer-a-friend': typeof ReferAFriendRoute
   '/resources': typeof ResourcesRouteWithChildren
   '/reviews': typeof ReviewsRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/specialties': typeof SpecialtiesRouteWithChildren
+  '/terms': typeof TermsRoute
   '/visit-us': typeof VisitUsRoute
   '/weight-loss-glp1': typeof WeightLossGlp1Route
   '/diagnostics/allergy-testing': typeof DiagnosticsAllergyTestingRoute
@@ -370,13 +405,18 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/careers': typeof CareersRoute
   '/employers': typeof EmployersRoute
   '/faq': typeof FaqRoute
+  '/hipaa-accessibility': typeof HipaaAccessibilityRoute
   '/insurance': typeof InsuranceRoute
   '/our-physicians': typeof OurPhysiciansRoute
   '/portal': typeof PortalRoute
+  '/privacy': typeof PrivacyRoute
   '/refer-a-friend': typeof ReferAFriendRoute
   '/reviews': typeof ReviewsRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/terms': typeof TermsRoute
   '/visit-us': typeof VisitUsRoute
   '/weight-loss-glp1': typeof WeightLossGlp1Route
   '/diagnostics/allergy-testing': typeof DiagnosticsAllergyTestingRoute
@@ -414,18 +454,23 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/careers': typeof CareersRoute
   '/diagnostics': typeof DiagnosticsRouteWithChildren
   '/employers': typeof EmployersRoute
   '/faq': typeof FaqRoute
+  '/hipaa-accessibility': typeof HipaaAccessibilityRoute
   '/insurance': typeof InsuranceRoute
   '/locations': typeof LocationsRouteWithChildren
   '/longevity': typeof LongevityRouteWithChildren
   '/our-physicians': typeof OurPhysiciansRoute
   '/portal': typeof PortalRoute
+  '/privacy': typeof PrivacyRoute
   '/refer-a-friend': typeof ReferAFriendRoute
   '/resources': typeof ResourcesRouteWithChildren
   '/reviews': typeof ReviewsRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/specialties': typeof SpecialtiesRouteWithChildren
+  '/terms': typeof TermsRoute
   '/visit-us': typeof VisitUsRoute
   '/weight-loss-glp1': typeof WeightLossGlp1Route
   '/diagnostics/allergy-testing': typeof DiagnosticsAllergyTestingRoute
@@ -466,18 +511,23 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/careers'
     | '/diagnostics'
     | '/employers'
     | '/faq'
+    | '/hipaa-accessibility'
     | '/insurance'
     | '/locations'
     | '/longevity'
     | '/our-physicians'
     | '/portal'
+    | '/privacy'
     | '/refer-a-friend'
     | '/resources'
     | '/reviews'
+    | '/sitemap.xml'
     | '/specialties'
+    | '/terms'
     | '/visit-us'
     | '/weight-loss-glp1'
     | '/diagnostics/allergy-testing'
@@ -516,13 +566,18 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/careers'
     | '/employers'
     | '/faq'
+    | '/hipaa-accessibility'
     | '/insurance'
     | '/our-physicians'
     | '/portal'
+    | '/privacy'
     | '/refer-a-friend'
     | '/reviews'
+    | '/sitemap.xml'
+    | '/terms'
     | '/visit-us'
     | '/weight-loss-glp1'
     | '/diagnostics/allergy-testing'
@@ -559,18 +614,23 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/careers'
     | '/diagnostics'
     | '/employers'
     | '/faq'
+    | '/hipaa-accessibility'
     | '/insurance'
     | '/locations'
     | '/longevity'
     | '/our-physicians'
     | '/portal'
+    | '/privacy'
     | '/refer-a-friend'
     | '/resources'
     | '/reviews'
+    | '/sitemap.xml'
     | '/specialties'
+    | '/terms'
     | '/visit-us'
     | '/weight-loss-glp1'
     | '/diagnostics/allergy-testing'
@@ -610,18 +670,23 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CareersRoute: typeof CareersRoute
   DiagnosticsRoute: typeof DiagnosticsRouteWithChildren
   EmployersRoute: typeof EmployersRoute
   FaqRoute: typeof FaqRoute
+  HipaaAccessibilityRoute: typeof HipaaAccessibilityRoute
   InsuranceRoute: typeof InsuranceRoute
   LocationsRoute: typeof LocationsRouteWithChildren
   LongevityRoute: typeof LongevityRouteWithChildren
   OurPhysiciansRoute: typeof OurPhysiciansRoute
   PortalRoute: typeof PortalRoute
+  PrivacyRoute: typeof PrivacyRoute
   ReferAFriendRoute: typeof ReferAFriendRoute
   ResourcesRoute: typeof ResourcesRouteWithChildren
   ReviewsRoute: typeof ReviewsRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   SpecialtiesRoute: typeof SpecialtiesRouteWithChildren
+  TermsRoute: typeof TermsRoute
   VisitUsRoute: typeof VisitUsRoute
   WeightLossGlp1Route: typeof WeightLossGlp1Route
 }
@@ -642,11 +707,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof VisitUsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/specialties': {
       id: '/specialties'
       path: '/specialties'
       fullPath: '/specialties'
       preLoaderRoute: typeof SpecialtiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/reviews': {
@@ -668,6 +747,13 @@ declare module '@tanstack/react-router' {
       path: '/refer-a-friend'
       fullPath: '/refer-a-friend'
       preLoaderRoute: typeof ReferAFriendRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/portal': {
@@ -705,6 +791,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof InsuranceRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/hipaa-accessibility': {
+      id: '/hipaa-accessibility'
+      path: '/hipaa-accessibility'
+      fullPath: '/hipaa-accessibility'
+      preLoaderRoute: typeof HipaaAccessibilityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/faq': {
       id: '/faq'
       path: '/faq'
@@ -724,6 +817,13 @@ declare module '@tanstack/react-router' {
       path: '/diagnostics'
       fullPath: '/diagnostics'
       preLoaderRoute: typeof DiagnosticsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/careers': {
+      id: '/careers'
+      path: '/careers'
+      fullPath: '/careers'
+      preLoaderRoute: typeof CareersRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -1114,18 +1214,23 @@ const SpecialtiesRouteWithChildren = SpecialtiesRoute._addFileChildren(
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CareersRoute: CareersRoute,
   DiagnosticsRoute: DiagnosticsRouteWithChildren,
   EmployersRoute: EmployersRoute,
   FaqRoute: FaqRoute,
+  HipaaAccessibilityRoute: HipaaAccessibilityRoute,
   InsuranceRoute: InsuranceRoute,
   LocationsRoute: LocationsRouteWithChildren,
   LongevityRoute: LongevityRouteWithChildren,
   OurPhysiciansRoute: OurPhysiciansRoute,
   PortalRoute: PortalRoute,
+  PrivacyRoute: PrivacyRoute,
   ReferAFriendRoute: ReferAFriendRoute,
   ResourcesRoute: ResourcesRouteWithChildren,
   ReviewsRoute: ReviewsRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   SpecialtiesRoute: SpecialtiesRouteWithChildren,
+  TermsRoute: TermsRoute,
   VisitUsRoute: VisitUsRoute,
   WeightLossGlp1Route: WeightLossGlp1Route,
 }
