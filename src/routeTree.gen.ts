@@ -33,6 +33,9 @@ import { Route as SpecialtiesPrimaryCareRouteImport } from './routes/specialties
 import { Route as SpecialtiesPainManagementRouteImport } from './routes/specialties.pain-management'
 import { Route as SpecialtiesNeurologyRouteImport } from './routes/specialties.neurology'
 import { Route as SpecialtiesCardiologyVascularRouteImport } from './routes/specialties.cardiology-vascular'
+import { Route as ResourcesLongevityPreventionRouteImport } from './routes/resources.longevity-prevention'
+import { Route as ResourcesDecodingYourDiagnosticsRouteImport } from './routes/resources.decoding-your-diagnostics'
+import { Route as ResourcesBusyProfessionalsRouteImport } from './routes/resources.busy-professionals'
 import { Route as LongevityWaitlistRouteImport } from './routes/longevity.waitlist'
 import { Route as LongevityHormoneOptimizationRouteImport } from './routes/longevity.hormone-optimization'
 import { Route as LongevityHealthspanProgramsRouteImport } from './routes/longevity.healthspan-programs'
@@ -44,6 +47,8 @@ import { Route as DiagnosticsCancerScreeningRouteImport } from './routes/diagnos
 import { Route as DiagnosticsBiomarkersRouteImport } from './routes/diagnostics.biomarkers'
 import { Route as DiagnosticsAutonomicTestingRouteImport } from './routes/diagnostics.autonomic-testing'
 import { Route as DiagnosticsAllergyTestingRouteImport } from './routes/diagnostics.allergy-testing'
+import { Route as ResourcesDecodingYourDiagnosticsIndexRouteImport } from './routes/resources.decoding-your-diagnostics.index'
+import { Route as ResourcesBusyProfessionalsIndexRouteImport } from './routes/resources.busy-professionals.index'
 
 const WeightLossGlp1Route = WeightLossGlp1RouteImport.update({
   id: '/weight-loss-glp1',
@@ -168,6 +173,24 @@ const SpecialtiesCardiologyVascularRoute =
     path: '/cardiology-vascular',
     getParentRoute: () => SpecialtiesRoute,
   } as any)
+const ResourcesLongevityPreventionRoute =
+  ResourcesLongevityPreventionRouteImport.update({
+    id: '/longevity-prevention',
+    path: '/longevity-prevention',
+    getParentRoute: () => ResourcesRoute,
+  } as any)
+const ResourcesDecodingYourDiagnosticsRoute =
+  ResourcesDecodingYourDiagnosticsRouteImport.update({
+    id: '/decoding-your-diagnostics',
+    path: '/decoding-your-diagnostics',
+    getParentRoute: () => ResourcesRoute,
+  } as any)
+const ResourcesBusyProfessionalsRoute =
+  ResourcesBusyProfessionalsRouteImport.update({
+    id: '/busy-professionals',
+    path: '/busy-professionals',
+    getParentRoute: () => ResourcesRoute,
+  } as any)
 const LongevityWaitlistRoute = LongevityWaitlistRouteImport.update({
   id: '/waitlist',
   path: '/waitlist',
@@ -231,6 +254,18 @@ const DiagnosticsAllergyTestingRoute =
     path: '/allergy-testing',
     getParentRoute: () => DiagnosticsRoute,
   } as any)
+const ResourcesDecodingYourDiagnosticsIndexRoute =
+  ResourcesDecodingYourDiagnosticsIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => ResourcesDecodingYourDiagnosticsRoute,
+  } as any)
+const ResourcesBusyProfessionalsIndexRoute =
+  ResourcesBusyProfessionalsIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => ResourcesBusyProfessionalsRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -259,6 +294,9 @@ export interface FileRoutesByFullPath {
   '/longevity/healthspan-programs': typeof LongevityHealthspanProgramsRoute
   '/longevity/hormone-optimization': typeof LongevityHormoneOptimizationRoute
   '/longevity/waitlist': typeof LongevityWaitlistRoute
+  '/resources/busy-professionals': typeof ResourcesBusyProfessionalsRouteWithChildren
+  '/resources/decoding-your-diagnostics': typeof ResourcesDecodingYourDiagnosticsRouteWithChildren
+  '/resources/longevity-prevention': typeof ResourcesLongevityPreventionRoute
   '/specialties/cardiology-vascular': typeof SpecialtiesCardiologyVascularRoute
   '/specialties/neurology': typeof SpecialtiesNeurologyRoute
   '/specialties/pain-management': typeof SpecialtiesPainManagementRoute
@@ -268,6 +306,8 @@ export interface FileRoutesByFullPath {
   '/longevity/': typeof LongevityIndexRoute
   '/resources/': typeof ResourcesIndexRoute
   '/specialties/': typeof SpecialtiesIndexRoute
+  '/resources/busy-professionals/': typeof ResourcesBusyProfessionalsIndexRoute
+  '/resources/decoding-your-diagnostics/': typeof ResourcesDecodingYourDiagnosticsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -292,6 +332,7 @@ export interface FileRoutesByTo {
   '/longevity/healthspan-programs': typeof LongevityHealthspanProgramsRoute
   '/longevity/hormone-optimization': typeof LongevityHormoneOptimizationRoute
   '/longevity/waitlist': typeof LongevityWaitlistRoute
+  '/resources/longevity-prevention': typeof ResourcesLongevityPreventionRoute
   '/specialties/cardiology-vascular': typeof SpecialtiesCardiologyVascularRoute
   '/specialties/neurology': typeof SpecialtiesNeurologyRoute
   '/specialties/pain-management': typeof SpecialtiesPainManagementRoute
@@ -301,6 +342,8 @@ export interface FileRoutesByTo {
   '/longevity': typeof LongevityIndexRoute
   '/resources': typeof ResourcesIndexRoute
   '/specialties': typeof SpecialtiesIndexRoute
+  '/resources/busy-professionals': typeof ResourcesBusyProfessionalsIndexRoute
+  '/resources/decoding-your-diagnostics': typeof ResourcesDecodingYourDiagnosticsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -330,6 +373,9 @@ export interface FileRoutesById {
   '/longevity/healthspan-programs': typeof LongevityHealthspanProgramsRoute
   '/longevity/hormone-optimization': typeof LongevityHormoneOptimizationRoute
   '/longevity/waitlist': typeof LongevityWaitlistRoute
+  '/resources/busy-professionals': typeof ResourcesBusyProfessionalsRouteWithChildren
+  '/resources/decoding-your-diagnostics': typeof ResourcesDecodingYourDiagnosticsRouteWithChildren
+  '/resources/longevity-prevention': typeof ResourcesLongevityPreventionRoute
   '/specialties/cardiology-vascular': typeof SpecialtiesCardiologyVascularRoute
   '/specialties/neurology': typeof SpecialtiesNeurologyRoute
   '/specialties/pain-management': typeof SpecialtiesPainManagementRoute
@@ -339,6 +385,8 @@ export interface FileRoutesById {
   '/longevity/': typeof LongevityIndexRoute
   '/resources/': typeof ResourcesIndexRoute
   '/specialties/': typeof SpecialtiesIndexRoute
+  '/resources/busy-professionals/': typeof ResourcesBusyProfessionalsIndexRoute
+  '/resources/decoding-your-diagnostics/': typeof ResourcesDecodingYourDiagnosticsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -369,6 +417,9 @@ export interface FileRouteTypes {
     | '/longevity/healthspan-programs'
     | '/longevity/hormone-optimization'
     | '/longevity/waitlist'
+    | '/resources/busy-professionals'
+    | '/resources/decoding-your-diagnostics'
+    | '/resources/longevity-prevention'
     | '/specialties/cardiology-vascular'
     | '/specialties/neurology'
     | '/specialties/pain-management'
@@ -378,6 +429,8 @@ export interface FileRouteTypes {
     | '/longevity/'
     | '/resources/'
     | '/specialties/'
+    | '/resources/busy-professionals/'
+    | '/resources/decoding-your-diagnostics/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -402,6 +455,7 @@ export interface FileRouteTypes {
     | '/longevity/healthspan-programs'
     | '/longevity/hormone-optimization'
     | '/longevity/waitlist'
+    | '/resources/longevity-prevention'
     | '/specialties/cardiology-vascular'
     | '/specialties/neurology'
     | '/specialties/pain-management'
@@ -411,6 +465,8 @@ export interface FileRouteTypes {
     | '/longevity'
     | '/resources'
     | '/specialties'
+    | '/resources/busy-professionals'
+    | '/resources/decoding-your-diagnostics'
   id:
     | '__root__'
     | '/'
@@ -439,6 +495,9 @@ export interface FileRouteTypes {
     | '/longevity/healthspan-programs'
     | '/longevity/hormone-optimization'
     | '/longevity/waitlist'
+    | '/resources/busy-professionals'
+    | '/resources/decoding-your-diagnostics'
+    | '/resources/longevity-prevention'
     | '/specialties/cardiology-vascular'
     | '/specialties/neurology'
     | '/specialties/pain-management'
@@ -448,6 +507,8 @@ export interface FileRouteTypes {
     | '/longevity/'
     | '/resources/'
     | '/specialties/'
+    | '/resources/busy-professionals/'
+    | '/resources/decoding-your-diagnostics/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -638,6 +699,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SpecialtiesCardiologyVascularRouteImport
       parentRoute: typeof SpecialtiesRoute
     }
+    '/resources/longevity-prevention': {
+      id: '/resources/longevity-prevention'
+      path: '/longevity-prevention'
+      fullPath: '/resources/longevity-prevention'
+      preLoaderRoute: typeof ResourcesLongevityPreventionRouteImport
+      parentRoute: typeof ResourcesRoute
+    }
+    '/resources/decoding-your-diagnostics': {
+      id: '/resources/decoding-your-diagnostics'
+      path: '/decoding-your-diagnostics'
+      fullPath: '/resources/decoding-your-diagnostics'
+      preLoaderRoute: typeof ResourcesDecodingYourDiagnosticsRouteImport
+      parentRoute: typeof ResourcesRoute
+    }
+    '/resources/busy-professionals': {
+      id: '/resources/busy-professionals'
+      path: '/busy-professionals'
+      fullPath: '/resources/busy-professionals'
+      preLoaderRoute: typeof ResourcesBusyProfessionalsRouteImport
+      parentRoute: typeof ResourcesRoute
+    }
     '/longevity/waitlist': {
       id: '/longevity/waitlist'
       path: '/waitlist'
@@ -715,6 +797,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DiagnosticsAllergyTestingRouteImport
       parentRoute: typeof DiagnosticsRoute
     }
+    '/resources/decoding-your-diagnostics/': {
+      id: '/resources/decoding-your-diagnostics/'
+      path: '/'
+      fullPath: '/resources/decoding-your-diagnostics/'
+      preLoaderRoute: typeof ResourcesDecodingYourDiagnosticsIndexRouteImport
+      parentRoute: typeof ResourcesDecodingYourDiagnosticsRoute
+    }
+    '/resources/busy-professionals/': {
+      id: '/resources/busy-professionals/'
+      path: '/'
+      fullPath: '/resources/busy-professionals/'
+      preLoaderRoute: typeof ResourcesBusyProfessionalsIndexRouteImport
+      parentRoute: typeof ResourcesBusyProfessionalsRoute
+    }
   }
 }
 
@@ -764,11 +860,47 @@ const LongevityRouteWithChildren = LongevityRoute._addFileChildren(
   LongevityRouteChildren,
 )
 
+interface ResourcesBusyProfessionalsRouteChildren {
+  ResourcesBusyProfessionalsIndexRoute: typeof ResourcesBusyProfessionalsIndexRoute
+}
+
+const ResourcesBusyProfessionalsRouteChildren: ResourcesBusyProfessionalsRouteChildren =
+  {
+    ResourcesBusyProfessionalsIndexRoute: ResourcesBusyProfessionalsIndexRoute,
+  }
+
+const ResourcesBusyProfessionalsRouteWithChildren =
+  ResourcesBusyProfessionalsRoute._addFileChildren(
+    ResourcesBusyProfessionalsRouteChildren,
+  )
+
+interface ResourcesDecodingYourDiagnosticsRouteChildren {
+  ResourcesDecodingYourDiagnosticsIndexRoute: typeof ResourcesDecodingYourDiagnosticsIndexRoute
+}
+
+const ResourcesDecodingYourDiagnosticsRouteChildren: ResourcesDecodingYourDiagnosticsRouteChildren =
+  {
+    ResourcesDecodingYourDiagnosticsIndexRoute:
+      ResourcesDecodingYourDiagnosticsIndexRoute,
+  }
+
+const ResourcesDecodingYourDiagnosticsRouteWithChildren =
+  ResourcesDecodingYourDiagnosticsRoute._addFileChildren(
+    ResourcesDecodingYourDiagnosticsRouteChildren,
+  )
+
 interface ResourcesRouteChildren {
+  ResourcesBusyProfessionalsRoute: typeof ResourcesBusyProfessionalsRouteWithChildren
+  ResourcesDecodingYourDiagnosticsRoute: typeof ResourcesDecodingYourDiagnosticsRouteWithChildren
+  ResourcesLongevityPreventionRoute: typeof ResourcesLongevityPreventionRoute
   ResourcesIndexRoute: typeof ResourcesIndexRoute
 }
 
 const ResourcesRouteChildren: ResourcesRouteChildren = {
+  ResourcesBusyProfessionalsRoute: ResourcesBusyProfessionalsRouteWithChildren,
+  ResourcesDecodingYourDiagnosticsRoute:
+    ResourcesDecodingYourDiagnosticsRouteWithChildren,
+  ResourcesLongevityPreventionRoute: ResourcesLongevityPreventionRoute,
   ResourcesIndexRoute: ResourcesIndexRoute,
 }
 
