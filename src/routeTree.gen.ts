@@ -10,10 +10,18 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as WeightLossGlp1RouteImport } from './routes/weight-loss-glp1'
+import { Route as VisitUsRouteImport } from './routes/visit-us'
 import { Route as SpecialtiesRouteImport } from './routes/specialties'
+import { Route as ReviewsRouteImport } from './routes/reviews'
 import { Route as ResourcesRouteImport } from './routes/resources'
+import { Route as ReferAFriendRouteImport } from './routes/refer-a-friend'
+import { Route as PortalRouteImport } from './routes/portal'
+import { Route as OurPhysiciansRouteImport } from './routes/our-physicians'
 import { Route as LongevityRouteImport } from './routes/longevity'
 import { Route as LocationsRouteImport } from './routes/locations'
+import { Route as InsuranceRouteImport } from './routes/insurance'
+import { Route as FaqRouteImport } from './routes/faq'
+import { Route as EmployersRouteImport } from './routes/employers'
 import { Route as DiagnosticsRouteImport } from './routes/diagnostics'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as SpecialtiesIndexRouteImport } from './routes/specialties.index'
@@ -41,14 +49,39 @@ const WeightLossGlp1Route = WeightLossGlp1RouteImport.update({
   path: '/weight-loss-glp1',
   getParentRoute: () => rootRouteImport,
 } as any)
+const VisitUsRoute = VisitUsRouteImport.update({
+  id: '/visit-us',
+  path: '/visit-us',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SpecialtiesRoute = SpecialtiesRouteImport.update({
   id: '/specialties',
   path: '/specialties',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ReviewsRoute = ReviewsRouteImport.update({
+  id: '/reviews',
+  path: '/reviews',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ResourcesRoute = ResourcesRouteImport.update({
   id: '/resources',
   path: '/resources',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReferAFriendRoute = ReferAFriendRouteImport.update({
+  id: '/refer-a-friend',
+  path: '/refer-a-friend',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PortalRoute = PortalRouteImport.update({
+  id: '/portal',
+  path: '/portal',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OurPhysiciansRoute = OurPhysiciansRouteImport.update({
+  id: '/our-physicians',
+  path: '/our-physicians',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LongevityRoute = LongevityRouteImport.update({
@@ -59,6 +92,21 @@ const LongevityRoute = LongevityRouteImport.update({
 const LocationsRoute = LocationsRouteImport.update({
   id: '/locations',
   path: '/locations',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InsuranceRoute = InsuranceRouteImport.update({
+  id: '/insurance',
+  path: '/insurance',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FaqRoute = FaqRouteImport.update({
+  id: '/faq',
+  path: '/faq',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EmployersRoute = EmployersRouteImport.update({
+  id: '/employers',
+  path: '/employers',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DiagnosticsRoute = DiagnosticsRouteImport.update({
@@ -181,10 +229,18 @@ const DiagnosticsAllergyTestingRoute =
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/diagnostics': typeof DiagnosticsRouteWithChildren
+  '/employers': typeof EmployersRoute
+  '/faq': typeof FaqRoute
+  '/insurance': typeof InsuranceRoute
   '/locations': typeof LocationsRoute
   '/longevity': typeof LongevityRouteWithChildren
+  '/our-physicians': typeof OurPhysiciansRoute
+  '/portal': typeof PortalRoute
+  '/refer-a-friend': typeof ReferAFriendRoute
   '/resources': typeof ResourcesRoute
+  '/reviews': typeof ReviewsRoute
   '/specialties': typeof SpecialtiesRouteWithChildren
+  '/visit-us': typeof VisitUsRoute
   '/weight-loss-glp1': typeof WeightLossGlp1Route
   '/diagnostics/allergy-testing': typeof DiagnosticsAllergyTestingRoute
   '/diagnostics/autonomic-testing': typeof DiagnosticsAutonomicTestingRoute
@@ -208,8 +264,16 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/employers': typeof EmployersRoute
+  '/faq': typeof FaqRoute
+  '/insurance': typeof InsuranceRoute
   '/locations': typeof LocationsRoute
+  '/our-physicians': typeof OurPhysiciansRoute
+  '/portal': typeof PortalRoute
+  '/refer-a-friend': typeof ReferAFriendRoute
   '/resources': typeof ResourcesRoute
+  '/reviews': typeof ReviewsRoute
+  '/visit-us': typeof VisitUsRoute
   '/weight-loss-glp1': typeof WeightLossGlp1Route
   '/diagnostics/allergy-testing': typeof DiagnosticsAllergyTestingRoute
   '/diagnostics/autonomic-testing': typeof DiagnosticsAutonomicTestingRoute
@@ -235,10 +299,18 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/diagnostics': typeof DiagnosticsRouteWithChildren
+  '/employers': typeof EmployersRoute
+  '/faq': typeof FaqRoute
+  '/insurance': typeof InsuranceRoute
   '/locations': typeof LocationsRoute
   '/longevity': typeof LongevityRouteWithChildren
+  '/our-physicians': typeof OurPhysiciansRoute
+  '/portal': typeof PortalRoute
+  '/refer-a-friend': typeof ReferAFriendRoute
   '/resources': typeof ResourcesRoute
+  '/reviews': typeof ReviewsRoute
   '/specialties': typeof SpecialtiesRouteWithChildren
+  '/visit-us': typeof VisitUsRoute
   '/weight-loss-glp1': typeof WeightLossGlp1Route
   '/diagnostics/allergy-testing': typeof DiagnosticsAllergyTestingRoute
   '/diagnostics/autonomic-testing': typeof DiagnosticsAutonomicTestingRoute
@@ -265,10 +337,18 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/diagnostics'
+    | '/employers'
+    | '/faq'
+    | '/insurance'
     | '/locations'
     | '/longevity'
+    | '/our-physicians'
+    | '/portal'
+    | '/refer-a-friend'
     | '/resources'
+    | '/reviews'
     | '/specialties'
+    | '/visit-us'
     | '/weight-loss-glp1'
     | '/diagnostics/allergy-testing'
     | '/diagnostics/autonomic-testing'
@@ -292,8 +372,16 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/employers'
+    | '/faq'
+    | '/insurance'
     | '/locations'
+    | '/our-physicians'
+    | '/portal'
+    | '/refer-a-friend'
     | '/resources'
+    | '/reviews'
+    | '/visit-us'
     | '/weight-loss-glp1'
     | '/diagnostics/allergy-testing'
     | '/diagnostics/autonomic-testing'
@@ -318,10 +406,18 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/diagnostics'
+    | '/employers'
+    | '/faq'
+    | '/insurance'
     | '/locations'
     | '/longevity'
+    | '/our-physicians'
+    | '/portal'
+    | '/refer-a-friend'
     | '/resources'
+    | '/reviews'
     | '/specialties'
+    | '/visit-us'
     | '/weight-loss-glp1'
     | '/diagnostics/allergy-testing'
     | '/diagnostics/autonomic-testing'
@@ -347,10 +443,18 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DiagnosticsRoute: typeof DiagnosticsRouteWithChildren
+  EmployersRoute: typeof EmployersRoute
+  FaqRoute: typeof FaqRoute
+  InsuranceRoute: typeof InsuranceRoute
   LocationsRoute: typeof LocationsRoute
   LongevityRoute: typeof LongevityRouteWithChildren
+  OurPhysiciansRoute: typeof OurPhysiciansRoute
+  PortalRoute: typeof PortalRoute
+  ReferAFriendRoute: typeof ReferAFriendRoute
   ResourcesRoute: typeof ResourcesRoute
+  ReviewsRoute: typeof ReviewsRoute
   SpecialtiesRoute: typeof SpecialtiesRouteWithChildren
+  VisitUsRoute: typeof VisitUsRoute
   WeightLossGlp1Route: typeof WeightLossGlp1Route
 }
 
@@ -363,6 +467,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WeightLossGlp1RouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/visit-us': {
+      id: '/visit-us'
+      path: '/visit-us'
+      fullPath: '/visit-us'
+      preLoaderRoute: typeof VisitUsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/specialties': {
       id: '/specialties'
       path: '/specialties'
@@ -370,11 +481,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SpecialtiesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/reviews': {
+      id: '/reviews'
+      path: '/reviews'
+      fullPath: '/reviews'
+      preLoaderRoute: typeof ReviewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/resources': {
       id: '/resources'
       path: '/resources'
       fullPath: '/resources'
       preLoaderRoute: typeof ResourcesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/refer-a-friend': {
+      id: '/refer-a-friend'
+      path: '/refer-a-friend'
+      fullPath: '/refer-a-friend'
+      preLoaderRoute: typeof ReferAFriendRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/portal': {
+      id: '/portal'
+      path: '/portal'
+      fullPath: '/portal'
+      preLoaderRoute: typeof PortalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/our-physicians': {
+      id: '/our-physicians'
+      path: '/our-physicians'
+      fullPath: '/our-physicians'
+      preLoaderRoute: typeof OurPhysiciansRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/longevity': {
@@ -389,6 +528,27 @@ declare module '@tanstack/react-router' {
       path: '/locations'
       fullPath: '/locations'
       preLoaderRoute: typeof LocationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/insurance': {
+      id: '/insurance'
+      path: '/insurance'
+      fullPath: '/insurance'
+      preLoaderRoute: typeof InsuranceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/faq': {
+      id: '/faq'
+      path: '/faq'
+      fullPath: '/faq'
+      preLoaderRoute: typeof FaqRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/employers': {
+      id: '/employers'
+      path: '/employers'
+      fullPath: '/employers'
+      preLoaderRoute: typeof EmployersRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/diagnostics': {
@@ -612,10 +772,18 @@ const SpecialtiesRouteWithChildren = SpecialtiesRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DiagnosticsRoute: DiagnosticsRouteWithChildren,
+  EmployersRoute: EmployersRoute,
+  FaqRoute: FaqRoute,
+  InsuranceRoute: InsuranceRoute,
   LocationsRoute: LocationsRoute,
   LongevityRoute: LongevityRouteWithChildren,
+  OurPhysiciansRoute: OurPhysiciansRoute,
+  PortalRoute: PortalRoute,
+  ReferAFriendRoute: ReferAFriendRoute,
   ResourcesRoute: ResourcesRoute,
+  ReviewsRoute: ReviewsRoute,
   SpecialtiesRoute: SpecialtiesRouteWithChildren,
+  VisitUsRoute: VisitUsRoute,
   WeightLossGlp1Route: WeightLossGlp1Route,
 }
 export const routeTree = rootRouteImport
