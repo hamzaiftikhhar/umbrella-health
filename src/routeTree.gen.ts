@@ -27,6 +27,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as SpecialtiesIndexRouteImport } from './routes/specialties.index'
 import { Route as ResourcesIndexRouteImport } from './routes/resources.index'
 import { Route as LongevityIndexRouteImport } from './routes/longevity.index'
+import { Route as LocationsIndexRouteImport } from './routes/locations.index'
 import { Route as DiagnosticsIndexRouteImport } from './routes/diagnostics.index'
 import { Route as SpecialtiesSleepMedicineRouteImport } from './routes/specialties.sleep-medicine'
 import { Route as SpecialtiesPrimaryCareRouteImport } from './routes/specialties.primary-care'
@@ -40,6 +41,10 @@ import { Route as LongevityWaitlistRouteImport } from './routes/longevity.waitli
 import { Route as LongevityHormoneOptimizationRouteImport } from './routes/longevity.hormone-optimization'
 import { Route as LongevityHealthspanProgramsRouteImport } from './routes/longevity.healthspan-programs'
 import { Route as LongevityExecutivePhysicalsRouteImport } from './routes/longevity.executive-physicals'
+import { Route as LocationsUnionSquareRouteImport } from './routes/locations.union-square'
+import { Route as LocationsTribecaFidiRouteImport } from './routes/locations.tribeca-fidi'
+import { Route as LocationsSohoRouteImport } from './routes/locations.soho'
+import { Route as LocationsBrooklynRouteImport } from './routes/locations.brooklyn'
 import { Route as DiagnosticsSleepPulmonaryRouteImport } from './routes/diagnostics.sleep-pulmonary'
 import { Route as DiagnosticsSampleReportRouteImport } from './routes/diagnostics.sample-report'
 import { Route as DiagnosticsImagingCardiacRouteImport } from './routes/diagnostics.imaging-cardiac'
@@ -143,6 +148,11 @@ const LongevityIndexRoute = LongevityIndexRouteImport.update({
   path: '/',
   getParentRoute: () => LongevityRoute,
 } as any)
+const LocationsIndexRoute = LocationsIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => LocationsRoute,
+} as any)
 const DiagnosticsIndexRoute = DiagnosticsIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -217,6 +227,26 @@ const LongevityExecutivePhysicalsRoute =
     path: '/executive-physicals',
     getParentRoute: () => LongevityRoute,
   } as any)
+const LocationsUnionSquareRoute = LocationsUnionSquareRouteImport.update({
+  id: '/union-square',
+  path: '/union-square',
+  getParentRoute: () => LocationsRoute,
+} as any)
+const LocationsTribecaFidiRoute = LocationsTribecaFidiRouteImport.update({
+  id: '/tribeca-fidi',
+  path: '/tribeca-fidi',
+  getParentRoute: () => LocationsRoute,
+} as any)
+const LocationsSohoRoute = LocationsSohoRouteImport.update({
+  id: '/soho',
+  path: '/soho',
+  getParentRoute: () => LocationsRoute,
+} as any)
+const LocationsBrooklynRoute = LocationsBrooklynRouteImport.update({
+  id: '/brooklyn',
+  path: '/brooklyn',
+  getParentRoute: () => LocationsRoute,
+} as any)
 const DiagnosticsSleepPulmonaryRoute =
   DiagnosticsSleepPulmonaryRouteImport.update({
     id: '/sleep-pulmonary',
@@ -294,7 +324,7 @@ export interface FileRoutesByFullPath {
   '/employers': typeof EmployersRoute
   '/faq': typeof FaqRoute
   '/insurance': typeof InsuranceRoute
-  '/locations': typeof LocationsRoute
+  '/locations': typeof LocationsRouteWithChildren
   '/longevity': typeof LongevityRouteWithChildren
   '/our-physicians': typeof OurPhysiciansRoute
   '/portal': typeof PortalRoute
@@ -311,6 +341,10 @@ export interface FileRoutesByFullPath {
   '/diagnostics/imaging-cardiac': typeof DiagnosticsImagingCardiacRoute
   '/diagnostics/sample-report': typeof DiagnosticsSampleReportRoute
   '/diagnostics/sleep-pulmonary': typeof DiagnosticsSleepPulmonaryRoute
+  '/locations/brooklyn': typeof LocationsBrooklynRoute
+  '/locations/soho': typeof LocationsSohoRoute
+  '/locations/tribeca-fidi': typeof LocationsTribecaFidiRoute
+  '/locations/union-square': typeof LocationsUnionSquareRoute
   '/longevity/executive-physicals': typeof LongevityExecutivePhysicalsRoute
   '/longevity/healthspan-programs': typeof LongevityHealthspanProgramsRoute
   '/longevity/hormone-optimization': typeof LongevityHormoneOptimizationRoute
@@ -324,6 +358,7 @@ export interface FileRoutesByFullPath {
   '/specialties/primary-care': typeof SpecialtiesPrimaryCareRoute
   '/specialties/sleep-medicine': typeof SpecialtiesSleepMedicineRoute
   '/diagnostics/': typeof DiagnosticsIndexRoute
+  '/locations/': typeof LocationsIndexRoute
   '/longevity/': typeof LongevityIndexRoute
   '/resources/': typeof ResourcesIndexRoute
   '/specialties/': typeof SpecialtiesIndexRoute
@@ -338,7 +373,6 @@ export interface FileRoutesByTo {
   '/employers': typeof EmployersRoute
   '/faq': typeof FaqRoute
   '/insurance': typeof InsuranceRoute
-  '/locations': typeof LocationsRoute
   '/our-physicians': typeof OurPhysiciansRoute
   '/portal': typeof PortalRoute
   '/refer-a-friend': typeof ReferAFriendRoute
@@ -352,6 +386,10 @@ export interface FileRoutesByTo {
   '/diagnostics/imaging-cardiac': typeof DiagnosticsImagingCardiacRoute
   '/diagnostics/sample-report': typeof DiagnosticsSampleReportRoute
   '/diagnostics/sleep-pulmonary': typeof DiagnosticsSleepPulmonaryRoute
+  '/locations/brooklyn': typeof LocationsBrooklynRoute
+  '/locations/soho': typeof LocationsSohoRoute
+  '/locations/tribeca-fidi': typeof LocationsTribecaFidiRoute
+  '/locations/union-square': typeof LocationsUnionSquareRoute
   '/longevity/executive-physicals': typeof LongevityExecutivePhysicalsRoute
   '/longevity/healthspan-programs': typeof LongevityHealthspanProgramsRoute
   '/longevity/hormone-optimization': typeof LongevityHormoneOptimizationRoute
@@ -363,6 +401,7 @@ export interface FileRoutesByTo {
   '/specialties/primary-care': typeof SpecialtiesPrimaryCareRoute
   '/specialties/sleep-medicine': typeof SpecialtiesSleepMedicineRoute
   '/diagnostics': typeof DiagnosticsIndexRoute
+  '/locations': typeof LocationsIndexRoute
   '/longevity': typeof LongevityIndexRoute
   '/resources': typeof ResourcesIndexRoute
   '/specialties': typeof SpecialtiesIndexRoute
@@ -379,7 +418,7 @@ export interface FileRoutesById {
   '/employers': typeof EmployersRoute
   '/faq': typeof FaqRoute
   '/insurance': typeof InsuranceRoute
-  '/locations': typeof LocationsRoute
+  '/locations': typeof LocationsRouteWithChildren
   '/longevity': typeof LongevityRouteWithChildren
   '/our-physicians': typeof OurPhysiciansRoute
   '/portal': typeof PortalRoute
@@ -396,6 +435,10 @@ export interface FileRoutesById {
   '/diagnostics/imaging-cardiac': typeof DiagnosticsImagingCardiacRoute
   '/diagnostics/sample-report': typeof DiagnosticsSampleReportRoute
   '/diagnostics/sleep-pulmonary': typeof DiagnosticsSleepPulmonaryRoute
+  '/locations/brooklyn': typeof LocationsBrooklynRoute
+  '/locations/soho': typeof LocationsSohoRoute
+  '/locations/tribeca-fidi': typeof LocationsTribecaFidiRoute
+  '/locations/union-square': typeof LocationsUnionSquareRoute
   '/longevity/executive-physicals': typeof LongevityExecutivePhysicalsRoute
   '/longevity/healthspan-programs': typeof LongevityHealthspanProgramsRoute
   '/longevity/hormone-optimization': typeof LongevityHormoneOptimizationRoute
@@ -409,6 +452,7 @@ export interface FileRoutesById {
   '/specialties/primary-care': typeof SpecialtiesPrimaryCareRoute
   '/specialties/sleep-medicine': typeof SpecialtiesSleepMedicineRoute
   '/diagnostics/': typeof DiagnosticsIndexRoute
+  '/locations/': typeof LocationsIndexRoute
   '/longevity/': typeof LongevityIndexRoute
   '/resources/': typeof ResourcesIndexRoute
   '/specialties/': typeof SpecialtiesIndexRoute
@@ -443,6 +487,10 @@ export interface FileRouteTypes {
     | '/diagnostics/imaging-cardiac'
     | '/diagnostics/sample-report'
     | '/diagnostics/sleep-pulmonary'
+    | '/locations/brooklyn'
+    | '/locations/soho'
+    | '/locations/tribeca-fidi'
+    | '/locations/union-square'
     | '/longevity/executive-physicals'
     | '/longevity/healthspan-programs'
     | '/longevity/hormone-optimization'
@@ -456,6 +504,7 @@ export interface FileRouteTypes {
     | '/specialties/primary-care'
     | '/specialties/sleep-medicine'
     | '/diagnostics/'
+    | '/locations/'
     | '/longevity/'
     | '/resources/'
     | '/specialties/'
@@ -470,7 +519,6 @@ export interface FileRouteTypes {
     | '/employers'
     | '/faq'
     | '/insurance'
-    | '/locations'
     | '/our-physicians'
     | '/portal'
     | '/refer-a-friend'
@@ -484,6 +532,10 @@ export interface FileRouteTypes {
     | '/diagnostics/imaging-cardiac'
     | '/diagnostics/sample-report'
     | '/diagnostics/sleep-pulmonary'
+    | '/locations/brooklyn'
+    | '/locations/soho'
+    | '/locations/tribeca-fidi'
+    | '/locations/union-square'
     | '/longevity/executive-physicals'
     | '/longevity/healthspan-programs'
     | '/longevity/hormone-optimization'
@@ -495,6 +547,7 @@ export interface FileRouteTypes {
     | '/specialties/primary-care'
     | '/specialties/sleep-medicine'
     | '/diagnostics'
+    | '/locations'
     | '/longevity'
     | '/resources'
     | '/specialties'
@@ -527,6 +580,10 @@ export interface FileRouteTypes {
     | '/diagnostics/imaging-cardiac'
     | '/diagnostics/sample-report'
     | '/diagnostics/sleep-pulmonary'
+    | '/locations/brooklyn'
+    | '/locations/soho'
+    | '/locations/tribeca-fidi'
+    | '/locations/union-square'
     | '/longevity/executive-physicals'
     | '/longevity/healthspan-programs'
     | '/longevity/hormone-optimization'
@@ -540,6 +597,7 @@ export interface FileRouteTypes {
     | '/specialties/primary-care'
     | '/specialties/sleep-medicine'
     | '/diagnostics/'
+    | '/locations/'
     | '/longevity/'
     | '/resources/'
     | '/specialties/'
@@ -556,7 +614,7 @@ export interface RootRouteChildren {
   EmployersRoute: typeof EmployersRoute
   FaqRoute: typeof FaqRoute
   InsuranceRoute: typeof InsuranceRoute
-  LocationsRoute: typeof LocationsRoute
+  LocationsRoute: typeof LocationsRouteWithChildren
   LongevityRoute: typeof LongevityRouteWithChildren
   OurPhysiciansRoute: typeof OurPhysiciansRoute
   PortalRoute: typeof PortalRoute
@@ -696,6 +754,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LongevityIndexRouteImport
       parentRoute: typeof LongevityRoute
     }
+    '/locations/': {
+      id: '/locations/'
+      path: '/'
+      fullPath: '/locations/'
+      preLoaderRoute: typeof LocationsIndexRouteImport
+      parentRoute: typeof LocationsRoute
+    }
     '/diagnostics/': {
       id: '/diagnostics/'
       path: '/'
@@ -786,6 +851,34 @@ declare module '@tanstack/react-router' {
       fullPath: '/longevity/executive-physicals'
       preLoaderRoute: typeof LongevityExecutivePhysicalsRouteImport
       parentRoute: typeof LongevityRoute
+    }
+    '/locations/union-square': {
+      id: '/locations/union-square'
+      path: '/union-square'
+      fullPath: '/locations/union-square'
+      preLoaderRoute: typeof LocationsUnionSquareRouteImport
+      parentRoute: typeof LocationsRoute
+    }
+    '/locations/tribeca-fidi': {
+      id: '/locations/tribeca-fidi'
+      path: '/tribeca-fidi'
+      fullPath: '/locations/tribeca-fidi'
+      preLoaderRoute: typeof LocationsTribecaFidiRouteImport
+      parentRoute: typeof LocationsRoute
+    }
+    '/locations/soho': {
+      id: '/locations/soho'
+      path: '/soho'
+      fullPath: '/locations/soho'
+      preLoaderRoute: typeof LocationsSohoRouteImport
+      parentRoute: typeof LocationsRoute
+    }
+    '/locations/brooklyn': {
+      id: '/locations/brooklyn'
+      path: '/brooklyn'
+      fullPath: '/locations/brooklyn'
+      preLoaderRoute: typeof LocationsBrooklynRouteImport
+      parentRoute: typeof LocationsRoute
     }
     '/diagnostics/sleep-pulmonary': {
       id: '/diagnostics/sleep-pulmonary'
@@ -900,6 +993,26 @@ const DiagnosticsRouteWithChildren = DiagnosticsRoute._addFileChildren(
   DiagnosticsRouteChildren,
 )
 
+interface LocationsRouteChildren {
+  LocationsBrooklynRoute: typeof LocationsBrooklynRoute
+  LocationsSohoRoute: typeof LocationsSohoRoute
+  LocationsTribecaFidiRoute: typeof LocationsTribecaFidiRoute
+  LocationsUnionSquareRoute: typeof LocationsUnionSquareRoute
+  LocationsIndexRoute: typeof LocationsIndexRoute
+}
+
+const LocationsRouteChildren: LocationsRouteChildren = {
+  LocationsBrooklynRoute: LocationsBrooklynRoute,
+  LocationsSohoRoute: LocationsSohoRoute,
+  LocationsTribecaFidiRoute: LocationsTribecaFidiRoute,
+  LocationsUnionSquareRoute: LocationsUnionSquareRoute,
+  LocationsIndexRoute: LocationsIndexRoute,
+}
+
+const LocationsRouteWithChildren = LocationsRoute._addFileChildren(
+  LocationsRouteChildren,
+)
+
 interface LongevityRouteChildren {
   LongevityExecutivePhysicalsRoute: typeof LongevityExecutivePhysicalsRoute
   LongevityHealthspanProgramsRoute: typeof LongevityHealthspanProgramsRoute
@@ -1005,7 +1118,7 @@ const rootRouteChildren: RootRouteChildren = {
   EmployersRoute: EmployersRoute,
   FaqRoute: FaqRoute,
   InsuranceRoute: InsuranceRoute,
-  LocationsRoute: LocationsRoute,
+  LocationsRoute: LocationsRouteWithChildren,
   LongevityRoute: LongevityRouteWithChildren,
   OurPhysiciansRoute: OurPhysiciansRoute,
   PortalRoute: PortalRoute,
