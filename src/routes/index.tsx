@@ -1,28 +1,33 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { SiteHeader } from "@/components/site/SiteHeader";
-import { Hero } from "@/components/site/Hero";
-import { LogoBar } from "@/components/site/LogoBar";
+import { HomeHero } from "@/components/site/HomeHero";
+import { InsuranceLogoBar } from "@/components/site/InsuranceLogoBar";
 import { LocationBanner } from "@/components/site/LocationBanner";
-import { ConditionsGrid } from "@/components/site/ConditionsGrid";
+import { PillarsGrid } from "@/components/site/PillarsGrid";
 import { CareDiagram } from "@/components/site/CareDiagram";
-import { NectarDifference } from "@/components/site/NectarDifference";
-import { StatsBanner } from "@/components/site/StatsBanner";
+import { UmbrellaDifference } from "@/components/site/UmbrellaDifference";
+import { StatCallout } from "@/components/site/primitives/StatCallout";
 import { Testimonials } from "@/components/site/Testimonials";
-import { DoctorProfile } from "@/components/site/DoctorProfile";
-import { FAQ, faqs } from "@/components/site/FAQ";
-import { PreFooterCTA } from "@/components/site/PreFooterCTA";
-import { SiteFooter } from "@/components/site/SiteFooter";
+import { FounderProfile } from "@/components/site/FounderProfile";
+import { EmployersStrip } from "@/components/site/EmployersStrip";
+import { HomeFAQ, homeFaqs } from "@/components/site/HomeFAQ";
+import { CTABanner } from "@/components/site/primitives/CTABanner";
+import { faqSchema } from "@/components/site/primitives/FAQList";
+import { IMG } from "@/data/images";
 
-const TITLE = "Verdant — Modern Allergy Care in New York City";
+const TITLE = "Umbrella Health — Modern Multispecialty Care in NYC";
 const DESCRIPTION =
-  "Verdant is a modern allergy clinic in NYC. Board-certified allergists test, diagnose, and treat environmental, food, pet, and skin allergies — calmly and quickly.";
+  "Primary care, specialists, in-house diagnostics, GLP-1 weight loss, and longevity programs under one roof in NYC. Insurance accepted. Book online.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: TITLE },
       { name: "description", content: DESCRIPTION },
-      { name: "keywords", content: "allergy clinic NYC, allergist New York, food allergy testing, immunotherapy, asthma care, eczema treatment" },
+      {
+        name: "keywords",
+        content:
+          "NYC clinic, primary care NYC, specialty care NYC, GLP-1 weight loss, longevity medicine, executive physical, in-house diagnostics",
+      },
       { name: "geo.region", content: "US-NY" },
       { name: "geo.placename", content: "New York City" },
       { property: "og:title", content: TITLE },
@@ -39,43 +44,28 @@ export const Route = createFileRoute("/")({
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "MedicalClinic",
-          name: "Verdant Allergy Clinic",
-          medicalSpecialty: "Allergology",
+          name: "Umbrella Health",
+          medicalSpecialty: [
+            "PrimaryCare",
+            "Cardiovascular",
+            "Neurologic",
+            "PulmonaryMedicine",
+            "PainMedicine",
+          ],
           url: "/",
           address: {
             "@type": "PostalAddress",
-            streetAddress: "145 Mercer Street",
+            streetAddress: "200 Lafayette Street",
             addressLocality: "New York",
             addressRegion: "NY",
             postalCode: "10012",
             addressCountry: "US",
           },
           areaServed: "New York City",
-          telephone: "+1-212-555-0142",
+          telephone: "+1-212-555-0188",
         }),
       },
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "FAQPage",
-          mainEntity: faqs.map((f) => ({
-            "@type": "Question",
-            name: f.q,
-            acceptedAnswer: { "@type": "Answer", text: f.a },
-          })),
-        }),
-      },
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "BreadcrumbList",
-          itemListElement: [
-            { "@type": "ListItem", position: 1, name: "Home", item: "/" },
-          ],
-        }),
-      },
+      { type: "application/ld+json", children: JSON.stringify(faqSchema(homeFaqs)) },
     ],
   }),
   component: Index,
@@ -83,38 +73,25 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   return (
-    <div className="relative">
-      <SiteHeader />
-
-      {/* Footer sits fixed at the bottom of the viewport, behind content.
-          As the user scrolls past the content, the footer is uncovered. */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none fixed inset-x-0 bottom-0 z-0"
-      >
-        <div className="pointer-events-auto">
-          <SiteFooter />
-        </div>
-      </div>
-
-      <div className="relative z-10 bg-background">
-        <main>
-          <Hero />
-          <LogoBar />
-          <LocationBanner />
-          <ConditionsGrid />
-          <CareDiagram />
-          <NectarDifference />
-          <StatsBanner />
-          <Testimonials />
-          <DoctorProfile />
-          <FAQ />
-          <PreFooterCTA />
-        </main>
-        {/* Spacer matches approximate footer height so the footer can fully reveal. */}
-        <div aria-hidden="true" className="h-[520px] sm:h-[560px]" />
-      </div>
-    </div>
+    <main>
+      <HomeHero />
+      <InsuranceLogoBar />
+      <LocationBanner />
+      <PillarsGrid />
+      <CareDiagram />
+      <UmbrellaDifference />
+      <StatCallout
+        stat="94%"
+        title="of members rate their care 5 stars after their first visit."
+        description="Multispecialty under one roof, data-driven care plans, and a team that actually picks up the phone."
+        image={IMG.patientHappy}
+        imageAlt="Smiling patient at Umbrella Health"
+      />
+      <Testimonials />
+      <FounderProfile />
+      <EmployersStrip />
+      <HomeFAQ />
+      <CTABanner />
+    </main>
   );
 }
-
