@@ -16,11 +16,19 @@ import { Route as LocationsRouteImport } from './routes/locations'
 import { Route as DiagnosticsRouteImport } from './routes/diagnostics'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as SpecialtiesIndexRouteImport } from './routes/specialties.index'
+import { Route as DiagnosticsIndexRouteImport } from './routes/diagnostics.index'
 import { Route as SpecialtiesSleepMedicineRouteImport } from './routes/specialties.sleep-medicine'
 import { Route as SpecialtiesPrimaryCareRouteImport } from './routes/specialties.primary-care'
 import { Route as SpecialtiesPainManagementRouteImport } from './routes/specialties.pain-management'
 import { Route as SpecialtiesNeurologyRouteImport } from './routes/specialties.neurology'
 import { Route as SpecialtiesCardiologyVascularRouteImport } from './routes/specialties.cardiology-vascular'
+import { Route as DiagnosticsSleepPulmonaryRouteImport } from './routes/diagnostics.sleep-pulmonary'
+import { Route as DiagnosticsSampleReportRouteImport } from './routes/diagnostics.sample-report'
+import { Route as DiagnosticsImagingCardiacRouteImport } from './routes/diagnostics.imaging-cardiac'
+import { Route as DiagnosticsCancerScreeningRouteImport } from './routes/diagnostics.cancer-screening'
+import { Route as DiagnosticsBiomarkersRouteImport } from './routes/diagnostics.biomarkers'
+import { Route as DiagnosticsAutonomicTestingRouteImport } from './routes/diagnostics.autonomic-testing'
+import { Route as DiagnosticsAllergyTestingRouteImport } from './routes/diagnostics.allergy-testing'
 
 const SpecialtiesRoute = SpecialtiesRouteImport.update({
   id: '/specialties',
@@ -57,6 +65,11 @@ const SpecialtiesIndexRoute = SpecialtiesIndexRouteImport.update({
   path: '/',
   getParentRoute: () => SpecialtiesRoute,
 } as any)
+const DiagnosticsIndexRoute = DiagnosticsIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => DiagnosticsRoute,
+} as any)
 const SpecialtiesSleepMedicineRoute =
   SpecialtiesSleepMedicineRouteImport.update({
     id: '/sleep-medicine',
@@ -85,47 +98,110 @@ const SpecialtiesCardiologyVascularRoute =
     path: '/cardiology-vascular',
     getParentRoute: () => SpecialtiesRoute,
   } as any)
+const DiagnosticsSleepPulmonaryRoute =
+  DiagnosticsSleepPulmonaryRouteImport.update({
+    id: '/sleep-pulmonary',
+    path: '/sleep-pulmonary',
+    getParentRoute: () => DiagnosticsRoute,
+  } as any)
+const DiagnosticsSampleReportRoute = DiagnosticsSampleReportRouteImport.update({
+  id: '/sample-report',
+  path: '/sample-report',
+  getParentRoute: () => DiagnosticsRoute,
+} as any)
+const DiagnosticsImagingCardiacRoute =
+  DiagnosticsImagingCardiacRouteImport.update({
+    id: '/imaging-cardiac',
+    path: '/imaging-cardiac',
+    getParentRoute: () => DiagnosticsRoute,
+  } as any)
+const DiagnosticsCancerScreeningRoute =
+  DiagnosticsCancerScreeningRouteImport.update({
+    id: '/cancer-screening',
+    path: '/cancer-screening',
+    getParentRoute: () => DiagnosticsRoute,
+  } as any)
+const DiagnosticsBiomarkersRoute = DiagnosticsBiomarkersRouteImport.update({
+  id: '/biomarkers',
+  path: '/biomarkers',
+  getParentRoute: () => DiagnosticsRoute,
+} as any)
+const DiagnosticsAutonomicTestingRoute =
+  DiagnosticsAutonomicTestingRouteImport.update({
+    id: '/autonomic-testing',
+    path: '/autonomic-testing',
+    getParentRoute: () => DiagnosticsRoute,
+  } as any)
+const DiagnosticsAllergyTestingRoute =
+  DiagnosticsAllergyTestingRouteImport.update({
+    id: '/allergy-testing',
+    path: '/allergy-testing',
+    getParentRoute: () => DiagnosticsRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/diagnostics': typeof DiagnosticsRoute
+  '/diagnostics': typeof DiagnosticsRouteWithChildren
   '/locations': typeof LocationsRoute
   '/longevity': typeof LongevityRoute
   '/resources': typeof ResourcesRoute
   '/specialties': typeof SpecialtiesRouteWithChildren
+  '/diagnostics/allergy-testing': typeof DiagnosticsAllergyTestingRoute
+  '/diagnostics/autonomic-testing': typeof DiagnosticsAutonomicTestingRoute
+  '/diagnostics/biomarkers': typeof DiagnosticsBiomarkersRoute
+  '/diagnostics/cancer-screening': typeof DiagnosticsCancerScreeningRoute
+  '/diagnostics/imaging-cardiac': typeof DiagnosticsImagingCardiacRoute
+  '/diagnostics/sample-report': typeof DiagnosticsSampleReportRoute
+  '/diagnostics/sleep-pulmonary': typeof DiagnosticsSleepPulmonaryRoute
   '/specialties/cardiology-vascular': typeof SpecialtiesCardiologyVascularRoute
   '/specialties/neurology': typeof SpecialtiesNeurologyRoute
   '/specialties/pain-management': typeof SpecialtiesPainManagementRoute
   '/specialties/primary-care': typeof SpecialtiesPrimaryCareRoute
   '/specialties/sleep-medicine': typeof SpecialtiesSleepMedicineRoute
+  '/diagnostics/': typeof DiagnosticsIndexRoute
   '/specialties/': typeof SpecialtiesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/diagnostics': typeof DiagnosticsRoute
   '/locations': typeof LocationsRoute
   '/longevity': typeof LongevityRoute
   '/resources': typeof ResourcesRoute
+  '/diagnostics/allergy-testing': typeof DiagnosticsAllergyTestingRoute
+  '/diagnostics/autonomic-testing': typeof DiagnosticsAutonomicTestingRoute
+  '/diagnostics/biomarkers': typeof DiagnosticsBiomarkersRoute
+  '/diagnostics/cancer-screening': typeof DiagnosticsCancerScreeningRoute
+  '/diagnostics/imaging-cardiac': typeof DiagnosticsImagingCardiacRoute
+  '/diagnostics/sample-report': typeof DiagnosticsSampleReportRoute
+  '/diagnostics/sleep-pulmonary': typeof DiagnosticsSleepPulmonaryRoute
   '/specialties/cardiology-vascular': typeof SpecialtiesCardiologyVascularRoute
   '/specialties/neurology': typeof SpecialtiesNeurologyRoute
   '/specialties/pain-management': typeof SpecialtiesPainManagementRoute
   '/specialties/primary-care': typeof SpecialtiesPrimaryCareRoute
   '/specialties/sleep-medicine': typeof SpecialtiesSleepMedicineRoute
+  '/diagnostics': typeof DiagnosticsIndexRoute
   '/specialties': typeof SpecialtiesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/diagnostics': typeof DiagnosticsRoute
+  '/diagnostics': typeof DiagnosticsRouteWithChildren
   '/locations': typeof LocationsRoute
   '/longevity': typeof LongevityRoute
   '/resources': typeof ResourcesRoute
   '/specialties': typeof SpecialtiesRouteWithChildren
+  '/diagnostics/allergy-testing': typeof DiagnosticsAllergyTestingRoute
+  '/diagnostics/autonomic-testing': typeof DiagnosticsAutonomicTestingRoute
+  '/diagnostics/biomarkers': typeof DiagnosticsBiomarkersRoute
+  '/diagnostics/cancer-screening': typeof DiagnosticsCancerScreeningRoute
+  '/diagnostics/imaging-cardiac': typeof DiagnosticsImagingCardiacRoute
+  '/diagnostics/sample-report': typeof DiagnosticsSampleReportRoute
+  '/diagnostics/sleep-pulmonary': typeof DiagnosticsSleepPulmonaryRoute
   '/specialties/cardiology-vascular': typeof SpecialtiesCardiologyVascularRoute
   '/specialties/neurology': typeof SpecialtiesNeurologyRoute
   '/specialties/pain-management': typeof SpecialtiesPainManagementRoute
   '/specialties/primary-care': typeof SpecialtiesPrimaryCareRoute
   '/specialties/sleep-medicine': typeof SpecialtiesSleepMedicineRoute
+  '/diagnostics/': typeof DiagnosticsIndexRoute
   '/specialties/': typeof SpecialtiesIndexRoute
 }
 export interface FileRouteTypes {
@@ -137,24 +213,39 @@ export interface FileRouteTypes {
     | '/longevity'
     | '/resources'
     | '/specialties'
+    | '/diagnostics/allergy-testing'
+    | '/diagnostics/autonomic-testing'
+    | '/diagnostics/biomarkers'
+    | '/diagnostics/cancer-screening'
+    | '/diagnostics/imaging-cardiac'
+    | '/diagnostics/sample-report'
+    | '/diagnostics/sleep-pulmonary'
     | '/specialties/cardiology-vascular'
     | '/specialties/neurology'
     | '/specialties/pain-management'
     | '/specialties/primary-care'
     | '/specialties/sleep-medicine'
+    | '/diagnostics/'
     | '/specialties/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/diagnostics'
     | '/locations'
     | '/longevity'
     | '/resources'
+    | '/diagnostics/allergy-testing'
+    | '/diagnostics/autonomic-testing'
+    | '/diagnostics/biomarkers'
+    | '/diagnostics/cancer-screening'
+    | '/diagnostics/imaging-cardiac'
+    | '/diagnostics/sample-report'
+    | '/diagnostics/sleep-pulmonary'
     | '/specialties/cardiology-vascular'
     | '/specialties/neurology'
     | '/specialties/pain-management'
     | '/specialties/primary-care'
     | '/specialties/sleep-medicine'
+    | '/diagnostics'
     | '/specialties'
   id:
     | '__root__'
@@ -164,17 +255,25 @@ export interface FileRouteTypes {
     | '/longevity'
     | '/resources'
     | '/specialties'
+    | '/diagnostics/allergy-testing'
+    | '/diagnostics/autonomic-testing'
+    | '/diagnostics/biomarkers'
+    | '/diagnostics/cancer-screening'
+    | '/diagnostics/imaging-cardiac'
+    | '/diagnostics/sample-report'
+    | '/diagnostics/sleep-pulmonary'
     | '/specialties/cardiology-vascular'
     | '/specialties/neurology'
     | '/specialties/pain-management'
     | '/specialties/primary-care'
     | '/specialties/sleep-medicine'
+    | '/diagnostics/'
     | '/specialties/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  DiagnosticsRoute: typeof DiagnosticsRoute
+  DiagnosticsRoute: typeof DiagnosticsRouteWithChildren
   LocationsRoute: typeof LocationsRoute
   LongevityRoute: typeof LongevityRoute
   ResourcesRoute: typeof ResourcesRoute
@@ -232,6 +331,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SpecialtiesIndexRouteImport
       parentRoute: typeof SpecialtiesRoute
     }
+    '/diagnostics/': {
+      id: '/diagnostics/'
+      path: '/'
+      fullPath: '/diagnostics/'
+      preLoaderRoute: typeof DiagnosticsIndexRouteImport
+      parentRoute: typeof DiagnosticsRoute
+    }
     '/specialties/sleep-medicine': {
       id: '/specialties/sleep-medicine'
       path: '/sleep-medicine'
@@ -267,8 +373,83 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SpecialtiesCardiologyVascularRouteImport
       parentRoute: typeof SpecialtiesRoute
     }
+    '/diagnostics/sleep-pulmonary': {
+      id: '/diagnostics/sleep-pulmonary'
+      path: '/sleep-pulmonary'
+      fullPath: '/diagnostics/sleep-pulmonary'
+      preLoaderRoute: typeof DiagnosticsSleepPulmonaryRouteImport
+      parentRoute: typeof DiagnosticsRoute
+    }
+    '/diagnostics/sample-report': {
+      id: '/diagnostics/sample-report'
+      path: '/sample-report'
+      fullPath: '/diagnostics/sample-report'
+      preLoaderRoute: typeof DiagnosticsSampleReportRouteImport
+      parentRoute: typeof DiagnosticsRoute
+    }
+    '/diagnostics/imaging-cardiac': {
+      id: '/diagnostics/imaging-cardiac'
+      path: '/imaging-cardiac'
+      fullPath: '/diagnostics/imaging-cardiac'
+      preLoaderRoute: typeof DiagnosticsImagingCardiacRouteImport
+      parentRoute: typeof DiagnosticsRoute
+    }
+    '/diagnostics/cancer-screening': {
+      id: '/diagnostics/cancer-screening'
+      path: '/cancer-screening'
+      fullPath: '/diagnostics/cancer-screening'
+      preLoaderRoute: typeof DiagnosticsCancerScreeningRouteImport
+      parentRoute: typeof DiagnosticsRoute
+    }
+    '/diagnostics/biomarkers': {
+      id: '/diagnostics/biomarkers'
+      path: '/biomarkers'
+      fullPath: '/diagnostics/biomarkers'
+      preLoaderRoute: typeof DiagnosticsBiomarkersRouteImport
+      parentRoute: typeof DiagnosticsRoute
+    }
+    '/diagnostics/autonomic-testing': {
+      id: '/diagnostics/autonomic-testing'
+      path: '/autonomic-testing'
+      fullPath: '/diagnostics/autonomic-testing'
+      preLoaderRoute: typeof DiagnosticsAutonomicTestingRouteImport
+      parentRoute: typeof DiagnosticsRoute
+    }
+    '/diagnostics/allergy-testing': {
+      id: '/diagnostics/allergy-testing'
+      path: '/allergy-testing'
+      fullPath: '/diagnostics/allergy-testing'
+      preLoaderRoute: typeof DiagnosticsAllergyTestingRouteImport
+      parentRoute: typeof DiagnosticsRoute
+    }
   }
 }
+
+interface DiagnosticsRouteChildren {
+  DiagnosticsAllergyTestingRoute: typeof DiagnosticsAllergyTestingRoute
+  DiagnosticsAutonomicTestingRoute: typeof DiagnosticsAutonomicTestingRoute
+  DiagnosticsBiomarkersRoute: typeof DiagnosticsBiomarkersRoute
+  DiagnosticsCancerScreeningRoute: typeof DiagnosticsCancerScreeningRoute
+  DiagnosticsImagingCardiacRoute: typeof DiagnosticsImagingCardiacRoute
+  DiagnosticsSampleReportRoute: typeof DiagnosticsSampleReportRoute
+  DiagnosticsSleepPulmonaryRoute: typeof DiagnosticsSleepPulmonaryRoute
+  DiagnosticsIndexRoute: typeof DiagnosticsIndexRoute
+}
+
+const DiagnosticsRouteChildren: DiagnosticsRouteChildren = {
+  DiagnosticsAllergyTestingRoute: DiagnosticsAllergyTestingRoute,
+  DiagnosticsAutonomicTestingRoute: DiagnosticsAutonomicTestingRoute,
+  DiagnosticsBiomarkersRoute: DiagnosticsBiomarkersRoute,
+  DiagnosticsCancerScreeningRoute: DiagnosticsCancerScreeningRoute,
+  DiagnosticsImagingCardiacRoute: DiagnosticsImagingCardiacRoute,
+  DiagnosticsSampleReportRoute: DiagnosticsSampleReportRoute,
+  DiagnosticsSleepPulmonaryRoute: DiagnosticsSleepPulmonaryRoute,
+  DiagnosticsIndexRoute: DiagnosticsIndexRoute,
+}
+
+const DiagnosticsRouteWithChildren = DiagnosticsRoute._addFileChildren(
+  DiagnosticsRouteChildren,
+)
 
 interface SpecialtiesRouteChildren {
   SpecialtiesCardiologyVascularRoute: typeof SpecialtiesCardiologyVascularRoute
@@ -294,7 +475,7 @@ const SpecialtiesRouteWithChildren = SpecialtiesRoute._addFileChildren(
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  DiagnosticsRoute: DiagnosticsRoute,
+  DiagnosticsRoute: DiagnosticsRouteWithChildren,
   LocationsRoute: LocationsRoute,
   LongevityRoute: LongevityRoute,
   ResourcesRoute: ResourcesRoute,
