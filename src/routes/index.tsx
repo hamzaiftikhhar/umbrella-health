@@ -86,7 +86,17 @@ function Index() {
     <div className="relative">
       <SiteHeader />
 
-      {/* Page content sits above footer; footer reveals on scroll via sticky layering */}
+      {/* Footer sits fixed at the bottom of the viewport, behind content.
+          As the user scrolls past the content, the footer is uncovered. */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none fixed inset-x-0 bottom-0 z-0"
+      >
+        <div className="pointer-events-auto">
+          <SiteFooter />
+        </div>
+      </div>
+
       <div className="relative z-10 bg-background">
         <main>
           <Hero />
@@ -101,13 +111,10 @@ function Index() {
           <FAQ />
           <PreFooterCTA />
         </main>
-      </div>
-
-      {/* Footer-reveal: footer is sticky to the bottom of the viewport
-          inside this wrapper, and the content above scrolls over it. */}
-      <div className="sticky bottom-0 z-0">
-        <SiteFooter />
+        {/* Spacer matches approximate footer height so the footer can fully reveal. */}
+        <div aria-hidden="true" className="h-[520px] sm:h-[560px]" />
       </div>
     </div>
   );
 }
+
