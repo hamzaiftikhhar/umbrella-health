@@ -25,6 +25,7 @@ import { Route as EmployersRouteImport } from './routes/employers'
 import { Route as DiagnosticsRouteImport } from './routes/diagnostics'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as SpecialtiesIndexRouteImport } from './routes/specialties.index'
+import { Route as ResourcesIndexRouteImport } from './routes/resources.index'
 import { Route as LongevityIndexRouteImport } from './routes/longevity.index'
 import { Route as DiagnosticsIndexRouteImport } from './routes/diagnostics.index'
 import { Route as SpecialtiesSleepMedicineRouteImport } from './routes/specialties.sleep-medicine'
@@ -123,6 +124,11 @@ const SpecialtiesIndexRoute = SpecialtiesIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => SpecialtiesRoute,
+} as any)
+const ResourcesIndexRoute = ResourcesIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => ResourcesRoute,
 } as any)
 const LongevityIndexRoute = LongevityIndexRouteImport.update({
   id: '/',
@@ -237,7 +243,7 @@ export interface FileRoutesByFullPath {
   '/our-physicians': typeof OurPhysiciansRoute
   '/portal': typeof PortalRoute
   '/refer-a-friend': typeof ReferAFriendRoute
-  '/resources': typeof ResourcesRoute
+  '/resources': typeof ResourcesRouteWithChildren
   '/reviews': typeof ReviewsRoute
   '/specialties': typeof SpecialtiesRouteWithChildren
   '/visit-us': typeof VisitUsRoute
@@ -260,6 +266,7 @@ export interface FileRoutesByFullPath {
   '/specialties/sleep-medicine': typeof SpecialtiesSleepMedicineRoute
   '/diagnostics/': typeof DiagnosticsIndexRoute
   '/longevity/': typeof LongevityIndexRoute
+  '/resources/': typeof ResourcesIndexRoute
   '/specialties/': typeof SpecialtiesIndexRoute
 }
 export interface FileRoutesByTo {
@@ -271,7 +278,6 @@ export interface FileRoutesByTo {
   '/our-physicians': typeof OurPhysiciansRoute
   '/portal': typeof PortalRoute
   '/refer-a-friend': typeof ReferAFriendRoute
-  '/resources': typeof ResourcesRoute
   '/reviews': typeof ReviewsRoute
   '/visit-us': typeof VisitUsRoute
   '/weight-loss-glp1': typeof WeightLossGlp1Route
@@ -293,6 +299,7 @@ export interface FileRoutesByTo {
   '/specialties/sleep-medicine': typeof SpecialtiesSleepMedicineRoute
   '/diagnostics': typeof DiagnosticsIndexRoute
   '/longevity': typeof LongevityIndexRoute
+  '/resources': typeof ResourcesIndexRoute
   '/specialties': typeof SpecialtiesIndexRoute
 }
 export interface FileRoutesById {
@@ -307,7 +314,7 @@ export interface FileRoutesById {
   '/our-physicians': typeof OurPhysiciansRoute
   '/portal': typeof PortalRoute
   '/refer-a-friend': typeof ReferAFriendRoute
-  '/resources': typeof ResourcesRoute
+  '/resources': typeof ResourcesRouteWithChildren
   '/reviews': typeof ReviewsRoute
   '/specialties': typeof SpecialtiesRouteWithChildren
   '/visit-us': typeof VisitUsRoute
@@ -330,6 +337,7 @@ export interface FileRoutesById {
   '/specialties/sleep-medicine': typeof SpecialtiesSleepMedicineRoute
   '/diagnostics/': typeof DiagnosticsIndexRoute
   '/longevity/': typeof LongevityIndexRoute
+  '/resources/': typeof ResourcesIndexRoute
   '/specialties/': typeof SpecialtiesIndexRoute
 }
 export interface FileRouteTypes {
@@ -368,6 +376,7 @@ export interface FileRouteTypes {
     | '/specialties/sleep-medicine'
     | '/diagnostics/'
     | '/longevity/'
+    | '/resources/'
     | '/specialties/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -379,7 +388,6 @@ export interface FileRouteTypes {
     | '/our-physicians'
     | '/portal'
     | '/refer-a-friend'
-    | '/resources'
     | '/reviews'
     | '/visit-us'
     | '/weight-loss-glp1'
@@ -401,6 +409,7 @@ export interface FileRouteTypes {
     | '/specialties/sleep-medicine'
     | '/diagnostics'
     | '/longevity'
+    | '/resources'
     | '/specialties'
   id:
     | '__root__'
@@ -437,6 +446,7 @@ export interface FileRouteTypes {
     | '/specialties/sleep-medicine'
     | '/diagnostics/'
     | '/longevity/'
+    | '/resources/'
     | '/specialties/'
   fileRoutesById: FileRoutesById
 }
@@ -451,7 +461,7 @@ export interface RootRouteChildren {
   OurPhysiciansRoute: typeof OurPhysiciansRoute
   PortalRoute: typeof PortalRoute
   ReferAFriendRoute: typeof ReferAFriendRoute
-  ResourcesRoute: typeof ResourcesRoute
+  ResourcesRoute: typeof ResourcesRouteWithChildren
   ReviewsRoute: typeof ReviewsRoute
   SpecialtiesRoute: typeof SpecialtiesRouteWithChildren
   VisitUsRoute: typeof VisitUsRoute
@@ -571,6 +581,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/specialties/'
       preLoaderRoute: typeof SpecialtiesIndexRouteImport
       parentRoute: typeof SpecialtiesRoute
+    }
+    '/resources/': {
+      id: '/resources/'
+      path: '/'
+      fullPath: '/resources/'
+      preLoaderRoute: typeof ResourcesIndexRouteImport
+      parentRoute: typeof ResourcesRoute
     }
     '/longevity/': {
       id: '/longevity/'
@@ -747,6 +764,18 @@ const LongevityRouteWithChildren = LongevityRoute._addFileChildren(
   LongevityRouteChildren,
 )
 
+interface ResourcesRouteChildren {
+  ResourcesIndexRoute: typeof ResourcesIndexRoute
+}
+
+const ResourcesRouteChildren: ResourcesRouteChildren = {
+  ResourcesIndexRoute: ResourcesIndexRoute,
+}
+
+const ResourcesRouteWithChildren = ResourcesRoute._addFileChildren(
+  ResourcesRouteChildren,
+)
+
 interface SpecialtiesRouteChildren {
   SpecialtiesCardiologyVascularRoute: typeof SpecialtiesCardiologyVascularRoute
   SpecialtiesNeurologyRoute: typeof SpecialtiesNeurologyRoute
@@ -780,7 +809,7 @@ const rootRouteChildren: RootRouteChildren = {
   OurPhysiciansRoute: OurPhysiciansRoute,
   PortalRoute: PortalRoute,
   ReferAFriendRoute: ReferAFriendRoute,
-  ResourcesRoute: ResourcesRoute,
+  ResourcesRoute: ResourcesRouteWithChildren,
   ReviewsRoute: ReviewsRoute,
   SpecialtiesRoute: SpecialtiesRouteWithChildren,
   VisitUsRoute: VisitUsRoute,
